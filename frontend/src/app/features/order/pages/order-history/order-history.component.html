@@ -1,0 +1,62 @@
+<div *ngIf="loading;else result">
+  <mat-progress-bar></mat-progress-bar>
+  <div class="relative justify-center items-center mt-[40vh]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <ng-container *ngIf="!error">
+    <h1 class="text-2xl font-bold mb-4">Order History</h1>
+    <div class="shadow rounded-lg overflow-hidden">
+      <table mat-table [dataSource]="orders" class="min-w-full divide-y divide-gray-200">
+        <!-- Id Column -->
+        <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">
+            ...{{ element._id.substring(19, 24) }}
+          </td>
+        </ng-container>
+        <!-- Date Column -->
+        <ng-container matColumnDef="createdAt">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DATE</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">
+            {{ element.createdAt }}
+          </td>
+        </ng-container>
+
+        <!-- Price Column -->
+        <ng-container matColumnDef="totalPrice">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TOTAL PRICE</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">{{ element.totalPrice | currency }}</td>
+        </ng-container>
+
+        <!-- Is Paid Column -->
+        <ng-container matColumnDef="isPaid">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">PAID</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">
+            {{ element.isPaid ? element.paidAt : "NO" }}
+          </td>
+        </ng-container>
+
+        <!-- isDelivered Column -->
+        <ng-container matColumnDef="isDelivered">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">DELIVERED</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">
+            {{ element.isDelivered ? element.deliveredAt : "NO" }}
+          </td>
+        </ng-container>
+
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ACTION</th>
+          <td mat-cell *matCellDef="let element" class="px-6 py-4 whitespace-nowrap">
+            <a [routerLink]="['/order-list/' + element._id]" class="text-indigo-600 hover:text-indigo-900">DETAILS</a>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="bg-gray-50"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="bg-white"></tr>
+      </table>
+    </div>
+  </ng-container>
+</ng-template>

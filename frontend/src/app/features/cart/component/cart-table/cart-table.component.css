@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.name, .action {
+  padding-left: 5px;
+}
+
+.name {
+  max-width: 200px;
+}

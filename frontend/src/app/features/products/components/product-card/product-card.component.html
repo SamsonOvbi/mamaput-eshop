@@ -1,0 +1,32 @@
+<mat-grid-list *ngIf="!error" gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+  <mat-grid-tile *ngFor="let product of products; trackBy: trackByProductId">
+    <div class="w-full">
+      <mat-card class="shadow-lg p-5" [ngClass]="{'text-center': !fullWidthMode}" *ngIf="product">
+        <div>
+          <a [routerLink]="'/product-details/' + product.slug">
+            <div [ngClass]="{'flex': fullWidthMode}">
+              <img class="mb-1 mx-auto" [ngClass]="{'h-[160px]': !fullWidthMode, 'h-[270px] w-[240px]': fullWidthMode}"
+                [src]="product.image" />
+            </div>
+          </a>
+          
+          <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
+            <mat-card-content>
+              <span class="font-bold text-xs uppercase mb-1">{{ product.category }}</span>
+              <p class="truncate hover:whitespace-normal">{{ product.name }}</p>
+              <p *ngIf="fullWidthMode">{{ product.description }}</p>
+              <app-rating [rating]="product.rating" [numReviews]="product.numReviews"></app-rating>
+            </mat-card-content>
+          </div>
+
+          <div class="flex justify-between ">
+            <span class="text-red-400">{{ product.price | currency }}</span>
+            <button color="primary" (click)="onAddToCart(product)">
+              <mat-icon>add_shopping_cart</mat-icon> ADD TO CART
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>

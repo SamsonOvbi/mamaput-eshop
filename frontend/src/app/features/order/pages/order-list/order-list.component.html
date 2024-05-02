@@ -1,0 +1,95 @@
+<div *ngIf="loading;else result">
+  <mat-progress-bar></mat-progress-bar>
+  <div class="relative justify-center items-center mt-[40vh]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <ng-container *ngIf="!error">
+    <h1 class="text-2xl font-bold mb-4">Order ...{{ order._id.substring(14, 24) }}</h1>
+    <div class="flex flex-wrap gap-5">
+      <div class="flex-grow w-full lg:w-2/3">
+        <app-order-table [order]="order" [displayedColumns]="displayedColumns"></app-order-table>
+
+        <div class="my-4 border-t border-gray-200"></div>
+        <mat-card class="shadow-lg p-4 mb-4">
+          <h2 class="text-xl font-semibold mb-3">Payment Method</h2>
+          <div class="space-y-2">
+            <p> Method: {{ order.paymentMethod }} </p>
+            <p>
+              Status: &nbsp;
+              <span class="text-green-500" *ngIf="order.isPaid">
+                Paid at {{ order.paidAt }}
+              </span>
+              <span class="text-yellow-500" *ngIf="!order.isPaid">
+                Not Paid
+              </span>
+            </p>
+          </div>
+        </mat-card>
+        <div class="my-4 border-t border-gray-200"></div>
+        <mat-card class="shadow-lg p-4">
+          <h2 class="text-xl font-semibold mb-3">Shipping Address</h2>
+          <div class="space-y-2">
+            <p>
+              Address: {{ order.shippingAddress.fullName }},
+              {{ order.shippingAddress.address }},
+              {{ order.shippingAddress.city }},
+              {{ order.shippingAddress.country }},
+              {{ order.shippingAddress.postalCode }}
+
+              <a class="text-blue-500 hover:underline" target="_blank" [href]=" 'https://maps.google.com?q=' +
+                  order.shippingAddress.lat + ',' + order.shippingAddress.lng
+                ">
+                Show On Map
+              </a>
+            </p>
+            <p>
+              Status: &nbsp;
+              <span class="text-green-500" *ngIf="order.isDelivered">
+                Delivered at {{ order.deliveredAt }}
+              </span>
+              <span class="text-yellow-500" *ngIf="!order.isDelivered">
+                Not Delivered
+              </span>
+            </p>
+          </div>
+        </mat-card>
+      </div>
+
+      <div class="w-full lg:w-3/12">
+        <mat-card class="shadow-lg p-4">
+          <h2 class="text-xl font-semibold mb-3">Order Summary</h2>
+          <div class="space-y-2">
+            <div class="flex justify-between">
+              <span>Items :</span>
+              <span>${{ order.itemsPrice }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Shipping :</span>
+              <span>${{ order.shippingPrice }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Tax :</span>
+              <span>${{ order.taxPrice }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Total :</span>
+              <span>${{ order.totalPrice }}</span>
+            </div>
+            <div *ngIf="!order.isPaid">
+              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+            </div>
+            <div *ngIf="order.isPaid && !order.isDelivered && currentUser && currentUser.isAdmin">
+              <button (click)="deliverOrder()"
+                class="w-full bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark focus:outline-none focus:shadow-outline">
+                DELIVER ORDER
+              </button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

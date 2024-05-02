@@ -1,0 +1,23 @@
+<div *ngIf="loading;else result">
+  <mat-progress-bar></mat-progress-bar>
+  <div class="relative justify-center items-center mt-[40vh]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result class="p-4 flex ">
+  <app-slider class="bg-blue-200" [products]="productsList"
+    [playInterval]="playInterval"></app-slider>
+
+  <!-- <app-product-header ></app-product-header> -->
+  <!-- <app-product-header [drawer]="drawer" [category]="category" 
+    (itemsCountChange)="onItemsCountChange($event)" (columnsCountChange)="onUpdateColumnsCount($event)">
+  </app-product-header> -->
+
+  <!-- <h2>Latest Products</h2> -->
+  <app-product-box #productBox [productsList]="productsList" [showSlides]="showSlides"></app-product-box>
+
+  <!-- <app-product-card [products]="products" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
+  </app-product-card> -->
+
+</ng-template>

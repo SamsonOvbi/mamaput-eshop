@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "6526cd807f1fe1895a16f2fc",
+    "items": [
+      {
+        "_id": "6526b569039a08b6eb8c64e5",
+        "image": "../assets/images/p4.jpg",
+        "name": "Nike Slim Pant",
+        "slug": "nike-slim-pant",
+        "price": 78,
+        "quantity": 1,
+        "product": "6526b569039a08b6eb8c64e5"
+      }
+    ],
+    "shippingAddress": {
+      "fullName": "Janet Zeta Jones",
+      "address": "House No. 1, Dega Village",
+      "city": "Abeokuta",
+      "postalCode": "112102",
+      "country": "Nigeria",
+      "lat": 0,
+      "lng": 0,
+      "_id": "6526cd807f1fe1895a16f2fd"
+    },
+    "user": "6526b568039a08b6eb8c64df",
+    "paymentMethod": "paypal",
+    "itemsPrice": 78,
+    "shippingPrice": 20,
+    "taxPrice": 11.7,
+    "totalPrice": 109.7,
+    "isPaid": false,
+    "isDelivered": false,
+    "createdAt": "2023-10-11T16:29:52.783Z",
+    "updatedAt": "2023-10-11T16:29:52.783Z",
+    "__v": 0
+  }
+]

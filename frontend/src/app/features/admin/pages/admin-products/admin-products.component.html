@@ -1,0 +1,93 @@
+<div *ngIf="loading; else result">
+  <mat-progress-bar class="h-2"></mat-progress-bar>
+  <div class="relative flex justify-center items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <ng-container *ngIf="!error">
+    <div class="flex flex-col md:flex-row md:justify-between ">
+      <div class="w-full md:w-1/5 mt-6">
+        <mat-nav-list class="bg-white shadow-md rounded-md p-4">
+          <a mat-list-item routerLink="/admin/dashboard">Dashboard</a>
+          <a mat-list-item routerLink="/admin/orders">Orders</a>
+          <a mat-list-item class="selected" routerLink="/admin/products">Products</a>
+          <a mat-list-item routerLink="/admin/users">Users</a>
+        </mat-nav-list>
+      </div>
+      <div class="w-full md:w-4/5 p-4 just">
+        <h1 class="text-2xl font-bold mb-4">Admin Products</h1>
+        <button mat-button (click)="createProduct()" color="primary" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Create Product
+        </button>
+        <table mat-table [dataSource]="products" class="mt-4 table-auto w-full">
+          <!-- Id Column -->
+          <ng-container matColumnDef="image">
+            <th mat-header-cell *matHeaderCellDef>Image</th>
+            <td class="thumbnail-cell" mat-cell *matCellDef="let element">
+              <img [src]="element.image" class="thumbnail w-20 h-20 object-cover rounded" />
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="_id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">
+              ...{{ element._id.substring(19, 24) }}
+              <!-- ...{{ element._id | slice:19:24 }} -->
+            </td>
+          </ng-container>
+          <!-- User Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element" class="name">
+              {{ element.name }}
+            </td>
+          </ng-container>
+          <!-- Price Column -->
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element">{{ element.price | currency }}</td>
+          </ng-container>
+
+          <!-- category Column -->
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef>Category</th>
+            <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+          </ng-container>
+
+          <!-- Is brand Column -->
+          <ng-container matColumnDef="brand">
+            <th mat-header-cell *matHeaderCellDef>Brand</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.brand }}
+            </td>
+          </ng-container>
+
+          <!-- countInStock Column -->
+          <ng-container matColumnDef="countInStock">
+            <th mat-header-cell *matHeaderCellDef>Count In Stock</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.countInStock }}
+            </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let element">
+              <a [routerLink]="['/admin/product/' + element._id]" mat-button class="bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded">
+                Edit
+              </a>
+              &nbsp;
+              <button mat-button (click)="handleDeleteActionAdmin(element)" color="warn" class="bg-gray-50 hover:bg-gray-200 text-red-500 py-2 px-4 rounded">
+                Delete
+              </button>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

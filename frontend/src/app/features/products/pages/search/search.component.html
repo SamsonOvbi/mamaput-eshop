@@ -1,0 +1,20 @@
+﻿<div *ngIf="loading;else result">
+  <mat-progress-bar></mat-progress-bar>
+  <div class="relative justify-center items-center mt-[40vh]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <div *ngIf="!error">
+    <!-- <app-product-header ></app-product-header> -->
+    <!-- <app-product-header [drawer]="drawer" [category]="category" (itemsCountChange)="onItemsCountChange($event)"
+      (columnsCountChange)="onUpdateColumnsCount($event)">
+    </app-product-header> -->
+    <div class="flex justify-center"> {{ productsSearch.length }} Result(s) </div>
+    <div class="divider"></div>
+    <app-product-box #productBox [productsSearch]="productsSearch" [showSlides]="showSlides"> </app-product-box>
+    <!-- <app-product-card [productsSearch]="productsSearch" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
+    </app-product-card> -->
+  </div>
+</ng-template>

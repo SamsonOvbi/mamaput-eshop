@@ -1,0 +1,63 @@
+<div class="flex items-center justify-between">
+  <button (click)="sidenav.close()" mat-button aria-label="close menu icon">
+    <div>
+      <span>Shopping Category</span>
+      <mat-icon>close</mat-icon>
+    </div>
+  </button>
+</div>
+
+<mat-nav-list>
+  <a (click)="sidenav.close()" class="ml-1" mat-button [routerLink]="['/home']">Select All</a>
+  <!-- (click)="sidenav.close()"  -->
+  <a mat-list-item [routerLink]="['/search']" [queryParams]="{ category: category }"
+    *ngFor="let category of categories">
+    <!-- {{ category }} -->
+    <div (click)="onCategoryUpdated(category)">{{category}}</div>
+  </a>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="orderMenu">
+      <span>Sort from {{order}}</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #orderMenu="matMenu">
+      <!-- (click)="sidenav.close()"  -->
+      <a mat-list-item [routerLink]="['/search']" [queryParams]="{ order: order }" *ngFor="let order of orderFrom">
+        <button mat-menu-item (click)="onOrderUpdated(order)">{{order}}</button>
+      </a>
+    </mat-menu>
+  </div>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="ratingMenu">
+      <span>Rating from {{rating}}</span>
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #ratingMenu="matMenu">
+      <!-- (click)="sidenav.close()"  -->
+      <a mat-list-item [routerLink]="['/search']" [queryParams]="{ rating: rating }" *ngFor="let rating of ratingFrom">
+        <button mat-menu-item (click)="onRatingUpdated(rating)">{{rating}}</button>
+      </a>
+    </mat-menu>
+  </div>
+
+  <div class="bg-blue-300 flex flex-col h-20 justify-center">
+    <a mat-list-item [routerLink]="['/search']" [queryParams]="{ minValue: minValue, maxValue: maxValue }">
+      <div class="py-1">
+        <label for="minValueRange">Min:</label>
+        <input id="minValueRange" type="range" [min]="0" [max]="maxValue" [step]="1" [(ngModel)]="minValue">
+      </div>
+      <div>
+        <label for="maxValueRange">Max:</label>
+        <input id="maxValueRange" type="range" [min]="minValue" [max]="2000" [step]="1" [(ngModel)]="maxValue">
+      </div>
+    </a>
+  </div>
+  <div class="ml-4">
+    <div>Min price: {{ minValue }}</div>
+    <div>Max price: {{ maxValue }}</div>
+  </div>
+
+
+</mat-nav-list>

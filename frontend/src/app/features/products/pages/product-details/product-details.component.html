@@ -1,0 +1,62 @@
+<div *ngIf="loading; else result">
+  <mat-progress-bar></mat-progress-bar>
+  <div class="flex justify-center items-center mt-[40vh]">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <div *ngIf="!error">
+    <div class="mb-4">
+      <a routerLink="/" class="text-blue-600 hover:text-blue-800">Back to result</a>
+    </div>
+    <div class="flex flex-wrap gap-5">
+      <div class="flex-1 max-w-1/2">
+        <img class="w-full" [src]="product.image" alt="Product Image" />
+      </div>
+
+      <div class="flex-1 max-w-1/4">
+        <h1>{{ product.name }}</h1>
+        <app-rating [rating]="product.rating" [numReviews]="product.numReviews"
+          [reviewUrl]="['/product-details/' + product.slug]"></app-rating>
+        <ul>
+          <li>Category: {{ product.category }}</li>
+          <li>Brand: {{ product.brand }}</li>
+          <li>Description: {{ product.description }}</li>
+        </ul>
+      </div>
+
+      <div class="flex-1 max-w-1/4">
+        <mat-card class="shadow-md ">
+          <ul class="px-4" >
+            <li class="flex justify-between">
+              <div>Price:</div>
+              <div>{{ product.price | currency }}</div>
+            </li>
+            <li class="flex justify-between">
+              <div>Status:</div>
+              <div>
+                {{ product.countInStock > 0 ? "In Stock" : "Unavailable" }}
+              </div>
+            </li>
+          </ul>
+
+          <div class="text-center mt-4">
+            <button
+              class="flex justify-between w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded"
+              (click)="addToCart(product)">
+              <mat-icon class="text-sm">add_shopping_cart</mat-icon>
+              <span>ADD TO CART</span>
+            </button>
+          </div>
+
+        </mat-card>
+      </div>
+    </div>
+    <div name="reviews">
+      <app-write-review [currentUser]="currentUser" (setSubmittedEvent)="setSubmitted($event)" [product]="product"
+        (setErrorEvent)="setError($event)" (setLoadingEvent)="setLoading($event)">
+      </app-write-review>
+    </div>
+  </div>
+</ng-template>
