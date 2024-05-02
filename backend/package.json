@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {"node": "<= 18 <20.13.0"},
   "scripts": {
     "start": "node --trace-warnings src/index.js",
     "dev": "nodemon --trace-warnings src/index.js",
