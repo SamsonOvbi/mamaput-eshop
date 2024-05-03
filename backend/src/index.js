@@ -39,6 +39,7 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
  
@@ -55,9 +56,9 @@ app.use('/api/orders', orderRoute);
 app.use('/api/payment', paymentRoute);
 app.use('/api/config', mapRoute);
 
-app.get('/', (req, res) =>
-  res.send({ message: 'Welcome to Mama Blog express server' })
-);
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
+});
  
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4204",
-    "build": "ng build --configuration production"
+    "start": "cd backend/build && node index.js",
+    "prebuild": "cd backend && yarn run build",
+    "build": "cd frontend && yarn run build"
   },
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

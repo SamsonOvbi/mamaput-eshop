@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {"node": "<= 18 <20.13.0"},
+  "engines": {
+    "node": "<= 18 <21"
+  },
   "scripts": {
     "start": "node src/index.js",
+    "build": "@babel src -d build && shx cp .env build/ && shx cp -r src/public/ build/",
     "dev": "nodemon --trace-warnings src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,7 +38,11 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "@faker-js/faker": "^8.2.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "shx": "^0.3.4"
   }
 }
