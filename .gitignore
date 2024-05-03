@@ -34,7 +34,6 @@ chrome-profiler-events*.json
 
 # misc
 *-cache
-*.lock
 coverage
 libpeerconnection.log
 *.log
