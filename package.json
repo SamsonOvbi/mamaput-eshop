@@ -1,6 +1,9 @@
 {
   "name": "mamaput-eshop",
   "version": "0.0.0",
+  "engines": {
+    "node": "<= 18 <21"
+  },
   "scripts": {
     "ng": "ng",
     "start": "cd backend/build && node index.js",
@@ -15,5 +18,7 @@
     "concurrently": "^8.2.2",
     "shx": "^0.3.3"
   },
-  "presets": ["@babel/preset-env"]
+  "presets": [
+    "@babel/preset-env"
+  ]
 }
