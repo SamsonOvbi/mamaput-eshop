@@ -13,11 +13,6 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.24.5",
-    "@babel/core": "^7.24.5",
-    "@babel/preset-env": "^7.24.5",
-    "concurrently": "^8.2.2",
-    "shx": "^0.3.4"
   },
   "presets": [
     "@babel/preset-env"
