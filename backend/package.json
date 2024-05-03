@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "build": "yarn run babel src -d build && shx cp .env build/ && shx cp -r src/public/ build/",
+    "scripts": {
+      "build": "npx babel src -d build && shx cp .env build/ && shx cp -r src/public/ build/"
+    },
     "dev": "nodemon --trace-warnings src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
