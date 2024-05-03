@@ -14,5 +14,6 @@
     "@babel/preset-env": "^7.0.0",
     "concurrently": "^8.2.2",
     "shx": "^0.3.3"
-  }
+  },
+  "presets": ["@babel/preset-env"]
 }

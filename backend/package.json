@@ -44,5 +44,8 @@
     "@faker-js/faker": "^8.2.0",
     "nodemon": "^2.0.22",
     "shx": "^0.3.4"
-  }
+  },
+  "presets": [
+    "@babel/preset-env"
+  ]
 }
