@@ -38,7 +38,7 @@ export class PaymentMethodComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle(`Payment Method - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Payment Method - ${this.sharedService.appTitle}`);
     this.cartService.currentCart.subscribe((x) => {
       this.form.patchValue({ paymentMethod: x.paymentMethod });
     });

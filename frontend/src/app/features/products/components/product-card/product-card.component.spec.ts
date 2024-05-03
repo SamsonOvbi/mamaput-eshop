@@ -14,7 +14,7 @@ describe('ProductCardComponent', () => {
 
   beforeEach(async () => {
     mockTitleService = jasmine.createSpyObj('Title', ['setTitle']);
-    mockSharedService = { titleBlog: 'Mama Blog', baseUrl: 'http://localhost:4200/', userAddress: '' } as SharedService;
+    mockSharedService = { appTitle: 'Mama Blog', baseUrl: 'http://localhost:4200/', userAddress: '' } as SharedService;
 
     await TestBed.configureTestingModule({
       declarations: [ ProductCardComponent ],
@@ -33,8 +33,8 @@ describe('ProductCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should correctly set the title of the page using the shared service\'s titleBlog property', () => {
-    expect(mockTitleService.setTitle).toHaveBeenCalledWith(`Product Box - ${mockSharedService.titleBlog}`);
+  it('should correctly set the title of the page using the shared service\'s appTitle property', () => {
+    expect(mockTitleService.setTitle).toHaveBeenCalledWith(`Product Box - ${mockSharedService.appTitle}`);
   });
 
   it('should correctly emit the product when the onAddToCart method is called', () => {

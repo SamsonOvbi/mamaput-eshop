@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const appTitle = `Product List - ${this.sharedService.titleBlog}`
+    const appTitle = `Product List - ${this.sharedService.appTitle}`
     this.titleService.setTitle(appTitle);
     this.getProducts();
   }

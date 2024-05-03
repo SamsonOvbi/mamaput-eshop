@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartListComponent } from './cart-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BehaviorSubject, of } from 'rxjs';
 import { CartService } from 'src/app/shared/services/cart.service';
@@ -12,6 +11,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Cart } from 'src/app/models/cart';
 import { User, UserInfo } from 'src/app/models';
+import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 
 describe('CartListComponent', () => {
   let component: CartListComponent;
@@ -19,13 +19,13 @@ describe('CartListComponent', () => {
   let router: Router;
   let cartService: CartService;
   let authService: AuthService;
-  let snackbarService: MatSnackBar;
+  let messageDialogService: MessageDialogService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CartListComponent],
-      imports: [RouterTestingModule, MatSnackBarModule, HttpClientTestingModule],
-      providers: [CartService, AuthService, Title, SharedService]
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      providers: [CartService, AuthService, Title, SharedService, MessageDialogService]
     })
       .compileComponents();
 
@@ -34,7 +34,7 @@ describe('CartListComponent', () => {
     router = TestBed.inject(Router);
     cartService = TestBed.inject(CartService);
     authService = TestBed.inject(AuthService);
-    snackbarService = TestBed.inject(MatSnackBar);
+    messageDialogService = TestBed.inject(MessageDialogService);
 
     spyOn(router, 'navigate');
     cartService.currentCart = new BehaviorSubject<Cart>({
@@ -73,17 +73,17 @@ describe('CartListComponent', () => {
   });
 
   it('test_checkout_empty_cart_error', () => {
-    spyOn(component['snackbarService'], 'openSB');
+    spyOn(component['messageDialogService'], 'openMessageDlg');
     component.cart = { itemsCount: 0 } as any;
     component.checkout();
-    expect(component['snackbarService'].openSB).toHaveBeenCalledWith('Cart is empty', 'error');
+    expect(component['messageDialogService'].openMessageDlg).toHaveBeenCalledWith({message: 'Cart is empty', type: 'error'});    
   });
 
   it('test_ngOnInit_set_title_and_subscriptions', () => {
     const titleService = TestBed.inject(Title);
     spyOn(titleService, 'setTitle');
     component.ngOnInit();
-    expect(titleService.setTitle).toHaveBeenCalledWith(`Shopping Cart - ${component['sharedService'].titleBlog}`);
+    expect(titleService.setTitle).toHaveBeenCalledWith(`Shopping Cart - ${component['sharedService'].appTitle}`);
     expect(cartService.currentCart).toBeTruthy();
     expect(authService.currentUser).toBeTruthy();
   });

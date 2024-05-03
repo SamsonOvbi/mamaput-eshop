@@ -33,7 +33,7 @@ export class AppComponent {
     if (this.sidenav) {
       this.sidenav.mode = 'side';
   }
-    this.titleService.setTitle(`title - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`title - ${this.sharedService.appTitle}`);
   }
 
   logBackdropClick() {

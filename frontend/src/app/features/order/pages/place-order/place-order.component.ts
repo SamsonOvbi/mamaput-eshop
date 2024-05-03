@@ -52,7 +52,7 @@ export class PlaceOrderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(`Place Order - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Place Order - ${this.sharedService.appTitle}`);
     this.cartService.currentCart.subscribe((x) => (this.cart = x));
     this.orderService.getShippingAddress().subscribe((x) => this.order = x);
 

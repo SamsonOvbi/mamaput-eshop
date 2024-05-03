@@ -15,12 +15,6 @@ To get started with this project, you will need to have the following tools and 
 ## Clone the repository using
 
 `git clone https://github.com/SamsonOvbi/mamaput-eshop.git`
-<!-- git remote add origin https://github.com/<username>/<repository-name>.git   -->
-
-git remote add origin https://github.com/SamsonOvbi/mamaput-eshop.git
-git push origin master 
-
-
 
 ## Installation Backend
 

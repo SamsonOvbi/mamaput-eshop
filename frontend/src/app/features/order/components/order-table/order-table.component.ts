@@ -18,7 +18,7 @@ export class OrderTableComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle(`Order Table - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Order Table - ${this.sharedService.appTitle}`);
   }
 
 }

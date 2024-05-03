@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProductBoxComponent } from './product-box.component';
-import { ProductService } from 'src/app/shared/services/product.service';
-import { SnackbarService } from 'src/app/shared/services/snackBar/snackbar.service';
+import { ProductService } from 'src/app/shared/services/product.service'; 
 import { CartService } from 'src/app/shared/services/cart.service';
 import { Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
@@ -9,6 +8,7 @@ import { of, throwError } from 'rxjs';
 import { NO_ERRORS_SCHEMA, SimpleChange } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { Item } from 'src/app/models/cart';
+import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 
 describe('ProductBoxComponent', () => {
   let component: ProductBoxComponent;
@@ -16,22 +16,22 @@ describe('ProductBoxComponent', () => {
   let titleService: Title;
   let productServiceMock: any;
   let cartServiceMock: any;
-  let snackbarServiceMock: any;
+  let messageDialogServiceMock: any;
   let titleServiceMock: any;
   let sharedServiceMock: any;
   let productsList: Product[] = [];
   let product: Product;
 
   beforeEach(async () => {
-    productServiceMock = { getAllProducts: jasmine.createSpy('getAllProducts') }
-    snackbarServiceMock = { openSB: jasmine.createSpy('openSB') };
+    productServiceMock = { getAllProducts: jasmine.createSpy('getAllProducts') };
+    messageDialogServiceMock = { openMessageDlg: jasmine.createSpy('openMessageDlg') };
     cartServiceMock = { addItem: jasmine.createSpy('addItem') };
     titleServiceMock = { setTitle: jasmine.createSpy('setTitle') };
-    sharedServiceMock = { titleBlog: 'Mama Blog' };
+    sharedServiceMock = { appTitle: 'Mama Blog' };
 
     component = new ProductBoxComponent(
       productServiceMock,
-      snackbarServiceMock,
+      messageDialogServiceMock,
       cartServiceMock,
       titleServiceMock,
       sharedServiceMock,  // Ensure this is correctly passed
@@ -41,11 +41,10 @@ describe('ProductBoxComponent', () => {
       declarations: [ProductBoxComponent],
       providers: [
         { provide: ProductService, useValue: { getAllProducts: () => of([]) } },
-        // { provide: ProductService, useValue: productServiceMock }, 
-        { provide: SnackbarService, useValue: snackbarServiceMock },
+        { provide: MessageDialogService, useValue: messageDialogServiceMock },
         { provide: CartService, useValue: cartServiceMock },
         { provide: Title, useValue: titleServiceMock },
-        { provide: SharedService, useValue: { titleBlog: 'Mama Blog' } },
+        { provide: SharedService, useValue: { appTitle: 'Mama Blog' } },
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -98,7 +97,7 @@ describe('ProductBoxComponent', () => {
     expect(cartServiceMock.addItem).toHaveBeenCalledWith({
       _id: '1', image: '', name: 'Test Product', slug: '', price: 100, quantity: 1
     });
-    expect(snackbarServiceMock.openSB).toHaveBeenCalledWith('Test Product added to the cart', '');
+    expect(messageDialogServiceMock.openMessageDlg).toHaveBeenCalledWith({message: 'Test Product added to the cart', type: 'success'});    
   });
 
   it('test_onAddToCart_error', () => {
@@ -106,7 +105,7 @@ describe('ProductBoxComponent', () => {
     const error = { message: 'Error adding product' };
     cartServiceMock.addItem.and.returnValue(throwError(() => error));
     component.onAddToCart(product);
-    expect(snackbarServiceMock.openSB).toHaveBeenCalledWith('Error adding product \n Product Not added', 'error');
+    expect(messageDialogServiceMock.openMessageDlg).toHaveBeenCalledWith({message: 'Error adding product \n Product Not added', type: 'error'});    
   });
 
 

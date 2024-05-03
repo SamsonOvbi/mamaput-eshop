@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SnackbarService } from 'src/app/shared/services/snackBar/snackbar.service';
 import { UserInfo } from 'src/app/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/models/product';
@@ -62,7 +61,7 @@ export class WriteReviewComponent implements OnInit {
         next: (data) => {
           this.setLoading(false); // this.loading = false;
           this.product = data;
-          this.titleService.setTitle(`Review for ${this.product.name} - ${this.sharedService.titleBlog}`);
+          this.titleService.setTitle(`Review for ${this.product.name} - ${this.sharedService.appTitle}`);
         },
         error: (err: any) => {
           this.setError(true); // this.error = true;

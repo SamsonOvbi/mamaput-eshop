@@ -62,7 +62,7 @@ export class ProductBoxComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.appTitle = this.sharedService.titleBlog;
+    this.appTitle = this.sharedService.appTitle;
     this.titleService.setTitle(`Product Box - ${this.appTitle}`);
     this.ngOnChanges(this.changes);
   }

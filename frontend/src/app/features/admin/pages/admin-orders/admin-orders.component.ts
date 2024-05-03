@@ -43,7 +43,7 @@ export class AdminOrdersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(`Admin Orders - ${this.sharedService.titleBlog}`); 
+    this.titleService.setTitle(`Admin Orders - ${this.sharedService.appTitle}`); 
     this.getAdminOrders();
   }
 

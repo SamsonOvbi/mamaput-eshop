@@ -58,7 +58,7 @@ export class SearchComponent {
       this.maxValue = p.maxValue || 0;
       search = p.category || p.name || p.order || p.rating || this.minValue || this.maxValue;
       this.searchProducts();      
-      const appTitle = `Search ${search}... - ${this.sharedService.titleBlog}`;
+      const appTitle = `Search ${search}... - ${this.sharedService.appTitle}`;
       this.titleService.setTitle(appTitle);
     });
 

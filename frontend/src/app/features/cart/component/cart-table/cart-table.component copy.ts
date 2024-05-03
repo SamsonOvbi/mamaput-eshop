@@ -28,7 +28,7 @@
 //   ) { }
 
 //   ngOnInit() {
-//     this.titleService.setTitle(`Cart Table - ${this.sharedService.titleBlog}`);
+//     this.titleService.setTitle(`Cart Table - ${this.sharedService.appTitle}`);
 //     this.cartService.currentCart.subscribe((x) => (this.cart = x));
 //   }
 

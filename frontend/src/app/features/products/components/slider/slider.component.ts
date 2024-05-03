@@ -45,7 +45,7 @@ export class SliderComponent implements OnInit {
    }
  
   ngOnInit() {
-    this.appTitle = this.sharedService.titleBlog;
+    this.appTitle = this.sharedService.appTitle;
     this.titleService.setTitle(`Slide Products - ${this.appTitle}`);
     this.loadImage();
   }

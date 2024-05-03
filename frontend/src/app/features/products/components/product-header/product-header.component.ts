@@ -20,7 +20,7 @@ export class ProductHeaderComponent {
     private titleService: Title,
     private sharedService: SharedService
   ) {
-    this.titleService.setTitle(`Product Header - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Product Header - ${this.sharedService.appTitle}`);
   }
 
 

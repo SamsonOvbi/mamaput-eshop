@@ -45,7 +45,7 @@ export class AdminProductsComponent implements OnInit {
     this.productService.getAdminProducts().subscribe({
       next: (data: Product[]) => {
         this.products = data;
-        this.titleService.setTitle(`Admin Products - ${this.sharedService.titleBlog}`);
+        this.titleService.setTitle(`Admin Products - ${this.sharedService.appTitle}`);
         this.loading = false;
       },
       error: (err: any) => {

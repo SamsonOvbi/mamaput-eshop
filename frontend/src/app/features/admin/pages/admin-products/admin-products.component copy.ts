@@ -52,7 +52,7 @@
 //     this.productService.getAdminProducts().subscribe({
 //       next: (data: Product[]) => {
 //         this.products = data;
-//         this.titleService.setTitle(`Product History - ${this.sharedService.titleBlog}`);
+//         this.titleService.setTitle(`Product History - ${this.sharedService.appTitle}`);
 //         this.loading = false;
 //       },
 //       error: (err: any) => {

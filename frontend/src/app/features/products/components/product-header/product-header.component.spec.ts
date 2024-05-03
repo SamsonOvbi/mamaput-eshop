@@ -11,7 +11,7 @@ class MockTitleService {
 }
 
 class MockSharedService {
-  titleBlog = 'Mama Blog';
+  appTitle = 'Mama Blog';
 }
 
 describe('ProductHeaderComponent', () => {
@@ -54,7 +54,7 @@ describe('ProductHeaderComponent', () => {
   });
 
   it('test_ProductHeaderComponent_constructor_sets_title_correctly', () => {
-    expect(mockTitleService.setTitle).toHaveBeenCalledWith(`Product Header - ${mockSharedService.titleBlog}`);
+    expect(mockTitleService.setTitle).toHaveBeenCalledWith(`Product Header - ${mockSharedService.appTitle}`);
   });
 
 

@@ -28,7 +28,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle(`Product Card - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Product Card - ${this.sharedService.appTitle}`);
   }
 
   trackByProductId(index: any, product: any) {

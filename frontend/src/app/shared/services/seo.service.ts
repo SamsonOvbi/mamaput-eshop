@@ -14,19 +14,19 @@ export class SeoService {
   ) {}
   public setMetaTags(product: any, sharedService: SharedService) {
 
-    this.titleService.setTitle(`${product.name} - ${sharedService.titleBlog}`);
+    this.titleService.setTitle(`${product.name} - ${sharedService.appTitle}`);
 
     this.meta.addTags([
       { name: 'description', content: product.description },
       {
         property: 'og:name',
-        content: `${product.name} -${sharedService.titleBlog}`,
+        content: `${product.name} -${sharedService.appTitle}`,
       },
       { property: 'og:site', content: 'website', },
       { property: 'og:url', content: sharedService.baseUrl + product.slug, },
       { property: 'og:image', content: product.image, },
       { property: 'og:description', content: product.description, },
-      { property: 'og:site_name', content: sharedService.titleBlog, },
+      { property: 'og:site_name', content: sharedService.appTitle, },
     ]);
   }
 

@@ -39,7 +39,7 @@ export class CartListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle(`Shopping Cart - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Shopping Cart - ${this.sharedService.appTitle}`);
     this.cartService.currentCart.subscribe((x) => (this.cart = x));
     this.authservice.currentUser.subscribe((x) => this.currentUser = x);
   }

@@ -1,12 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { of, throwError } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { SnackbarService } from 'src/app/shared/services/snackBar/snackbar.service';
 import { ForgotPasswordComponent } from './forgot-password.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 
 class AuthServiceMock {
     forgotPassword(data: any) {
@@ -21,54 +20,55 @@ class MatDialogRefMock {
 describe('ForgotPasswordComponent', () => { 
     let component: ForgotPasswordComponent;
     let authService: AuthService;
-    let snackbarService: SnackbarService;
+    let messageDialogService: MessageDialogService;
     let dialogRef: MatDialogRef<ForgotPasswordComponent>;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
-            imports: [ReactiveFormsModule, MatDialogModule, MatSnackBarModule,
+            imports: [ReactiveFormsModule, MatDialogModule,
                 BrowserAnimationsModule, // Ensure this is included if your component uses animations
             ],
             declarations: [ForgotPasswordComponent],
             providers: [
                 FormBuilder,
-                SnackbarService,
+                messageDialogService,
                 { provide: AuthService, useClass: AuthServiceMock },
                 { provide: MatDialogRef, useClass: MatDialogRefMock },
             ],
         }).compileComponents();
 
         authService = TestBed.inject(AuthService);
-        snackbarService = TestBed.inject(SnackbarService);
+        messageDialogService = TestBed.inject(MessageDialogService);
         dialogRef = TestBed.inject(MatDialogRef);
         component = TestBed.createComponent(ForgotPasswordComponent).componentInstance;
         component.ngOnInit();
     });
 
     it('test_handleSubmit_handles_forgotPassword_success', () => {
-        const snackbarSpy = spyOn(snackbarService, 'openSB').and.callThrough();
+        const messageDialogSpy = spyOn(messageDialogService, 'openMessageDlg').and.callThrough(); 
         const dialogRefSpy = spyOn(dialogRef, 'close').and.callThrough();
         component.forgotPasswordForm.controls['email'].setValue('test@example.com');
         component.handleSubmit();
         expect(dialogRefSpy).toHaveBeenCalled();
-        expect(snackbarSpy).toHaveBeenCalledWith('Success', ''); // Updated to match the actual call
+        expect(messageDialogSpy).toHaveBeenCalledWith({message: 'Success', type: 'success'});
     });
 
       it('test_handleSubmit_handles_forgotPassword_error', () => {
         spyOn(authService, 'forgotPassword').and.returnValue(throwError(() => new Error('Error')));
-        const snackbarSpy = spyOn(snackbarService, 'openSB').and.callThrough();
+        const messageDialogSpy = spyOn(messageDialogService, 'openMessageDlg').and.callThrough(); 
         component.forgotPasswordForm.controls['email'].setValue('test@example.com');
         component.handleSubmit();
-        expect(snackbarSpy).toHaveBeenCalledWith('Something went wrong!! PLease try again!!', 'error');
+        expect(messageDialogSpy).toHaveBeenCalledWith({message: 'Something went wrong!! PLease try again!!', type: 'error'});
+        
       });
 
       it('test_handleSubmit_handles_forgotPassword_success', () => {
-        const snackbarSpy = spyOn(snackbarService, 'openSB').and.callThrough();
+        const messageDialogSpy = spyOn(messageDialogService, 'openMessageDlg').and.callThrough(); 
         const dialogRefSpy = spyOn(dialogRef, 'close').and.callThrough();
         component.forgotPasswordForm.controls['email'].setValue('test@example.com');
         component.handleSubmit();
         expect(dialogRefSpy).toHaveBeenCalled();
-        expect(snackbarSpy).toHaveBeenCalledWith('Success', '');
+        expect(messageDialogSpy).toHaveBeenCalledWith({message: 'Success', type: 'success'});
       });
 
 

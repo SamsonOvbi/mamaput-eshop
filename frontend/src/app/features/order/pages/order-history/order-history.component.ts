@@ -50,7 +50,7 @@ export class OrderHistoryComponent implements OnInit {
     this.orderService.getOrderHistory().subscribe({
       next: (data) => {
         this.orders = data;
-        this.titleService.setTitle(`Order History - ${this.sharedService.titleBlog}`);
+        this.titleService.setTitle(`Order History - ${this.sharedService.appTitle}`);
         this.loading = false;
       },
       error: (err: any) => {

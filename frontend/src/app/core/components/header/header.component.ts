@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.appName = this.sharedService.titleBlog;
-    this.titleService.setTitle(`Core Header - ${this.sharedService.titleBlog}`);
+    this.appName = this.sharedService.appTitle;
+    this.titleService.setTitle(`Core Header - ${this.sharedService.appTitle}`);
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
     this.cartService.currentCart.subscribe((x) => (this.itemsCount = x.itemsCount));
     this.productService.getCategories().subscribe((categories) => (this.categories = categories));

@@ -53,7 +53,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.titleService.setTitle(`Admin Dashboard - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Admin Dashboard - ${this.sharedService.appTitle}`);
     this.getOrderSummary();
   }
 

@@ -40,7 +40,7 @@ export class AdminUsersComponent implements OnInit {
     this.userService.getUsers().subscribe({
       next: (data: any) => {
         this.users = data;
-        this.titleService.setTitle(`Admin User - ${this.sharedService.titleBlog}`);
+        this.titleService.setTitle(`Admin User - ${this.sharedService.appTitle}`);
         this.loading = false;
       },
       error: (err: any) => {

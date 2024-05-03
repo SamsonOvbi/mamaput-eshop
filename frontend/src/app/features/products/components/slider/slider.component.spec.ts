@@ -2,7 +2,7 @@ import { SliderComponent } from "./slider.component";
 
 // Mocks
 const mockTitleService = jasmine.createSpyObj('Slide Products - Mama Blog', ['setTitle']);
-const mockSharedService = jasmine.createSpyObj('Mama Blog', ['titleBlog']);
+const mockSharedService = jasmine.createSpyObj('Mama Blog', ['appTitle']);
 
 // Test data 
 const testProducts: any = [
@@ -52,7 +52,7 @@ describe('SliderComponent', () => {
     component.products = jasmine.createSpyObj(['someMethod']);
     spyOn(component, 'loadImage');
     component.products = testProducts;
-    mockSharedService.titleBlog = 'Mama Blog';     
+    mockSharedService.appTitle = 'Mama Blog';     
   });
 
   afterEach(() => {

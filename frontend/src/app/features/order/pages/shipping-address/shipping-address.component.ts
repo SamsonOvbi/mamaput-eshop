@@ -53,7 +53,7 @@ export class ShippingAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.authservice.currentUser.subscribe((x) => this.currentUser = x);
-    this.titleService.setTitle(`Shipping Address - ${this.sharedService.titleBlog}`);
+    this.titleService.setTitle(`Shipping Address - ${this.sharedService.appTitle}`);
     this.orderService.getShippingAddress().subscribe((x) => {
       this.buyer = x;
       this.shippingLocation.lat = this.buyer.shippingAddress.lat;
