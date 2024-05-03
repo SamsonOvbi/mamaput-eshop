@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "build": "yarn && ./node_modules/.bin/babel src -d build && shx cp .env build/ && shx cp -r src/public/ build/",
+    "build": "yarn && babel src -d build && shx cp .env build/ && shx cp -r src/public/ build/",
     "dev": "nodemon --trace-warnings src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -42,7 +42,6 @@
     "@babel/core": "^7.24.5",
     "@babel/preset-env": "^7.24.5",
     "@faker-js/faker": "^8.2.0",
-    "babel-cli": "^6.26.0",
     "nodemon": "^2.0.22",
     "shx": "^0.3.4"
   },
