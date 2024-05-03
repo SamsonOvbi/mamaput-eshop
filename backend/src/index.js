@@ -5,20 +5,20 @@ const path = require('path');
 const dotenv = require('dotenv');
 const express = require('express');
 dotenv.config();
-const connectDB = require('./src/db/connection');
+const connectDB = require('./db/connection');
 // const runDbConnect = require('./db/dbConnect');
 
-const dBaseSeed = require('./src/db/seeder');
-const uploadRoute = require('./src/routers/upload.routes');
+const dBaseSeed = require('./db/seeder');
+const uploadRoute = require('./routers/upload.routes');
 
-const userRoute = require('./src/routers/user.routes');
-const productRoute = require('./src/routers/product.routes');
-const orderRoute = require('./src/routers/order.routes');
-const paymentRoute = require('./src/routers/payment.routes');
-const cartRoute = require('./src/routers/cart.routes');
-const authRoute = require('./src/routers/auth.routes');
-const mapRoute = require('./src/routers/map.routes');
-const rateLimiter = require('./src/middleware/rateLimiter');
+const userRoute = require('./routers/user.routes');
+const productRoute = require('./routers/product.routes');
+const orderRoute = require('./routers/order.routes');
+const paymentRoute = require('./routers/payment.routes');
+const cartRoute = require('./routers/cart.routes');
+const authRoute = require('./routers/auth.routes');
+const mapRoute = require('./routers/map.routes');
+const rateLimiter = require('./middleware/rateLimiter');
 const helmet = require('helmet');
 const morgan = require('morgan');
 
@@ -29,8 +29,8 @@ orderRoute.use(helmet());
 // Use Morgan middleware for logging HTTP requests
 orderRoute.use(morgan('combined'));
 app.use(
-  cors({
-    credentials: true,
+  cors({ 
+    credentials: true, 
     origin: [
       'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
       'http://localhost:4205'
