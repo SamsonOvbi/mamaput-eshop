@@ -19,7 +19,7 @@ const cartRoute = require('./routers/cart.routes');
 const authRoute = require('./routers/auth.routes');
 const mapRoute = require('./routers/map.routes');
 const rateLimiter = require('./middleware/rateLimiter');
-const helmet = require('helmet'); 
+const helmet = require('helmet');
 const morgan = require('morgan');
 
 const app = express();
@@ -30,9 +30,9 @@ orderRoute.use(helmet());
 orderRoute.use(morgan('combined'));
 app.use(
   cors({
-    credentials: true, 
+    credentials: true,
     origin: [
-      'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000', 
+      'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
       'http://localhost:4205'
     ],
   })
@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
- 
+
 connectDB();
 // runDbConnect().catch(console.dir);
 
@@ -59,7 +59,7 @@ app.use('/api/config', mapRoute);
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
 });
- 
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`server started at http://localhost:${PORT}`);
@@ -69,7 +69,7 @@ app.use((err, req, res, next) => {
   let message;
   console.error(err);
   if (process.env.NODE_ENV === 'production') {
-    message = 'Internal Server Error';    
+    message = 'Internal Server Error';
     console.log({ message: message })
     res.status(500).send({ message: message });
   } else {
