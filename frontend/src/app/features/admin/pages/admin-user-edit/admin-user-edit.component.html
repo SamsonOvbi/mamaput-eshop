@@ -26,12 +26,12 @@
             </mat-list-item>
             <mat-list-item class="flex justify-between items-center">
               <button [disabled]="loading" 
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-4 rounded">
+              class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
                 Update
               </button>
               <mat-spinner [diameter]="30" *ngIf="loading"></mat-spinner>
               <a mat-button routerLink="/admin/users" 
-              class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"> Back </a>
+              class="bg-gray-200 hover:bg-gray-400 text-white py-2 px-4 rounded"> Back </a>
             </mat-list-item>
           </mat-list>
         </form>
