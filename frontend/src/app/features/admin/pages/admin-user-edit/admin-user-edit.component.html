@@ -12,26 +12,25 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col space-y-4">
           <h1 class="text-2xl font-bold">Update User {{ user._id }}</h1>
 
-          <mat-list class="space-y-4" >
+          <mat-list class="space-y-4">
             <mat-list-item>
               <mat-form-field class="w-full">
                 <input matInput placeholder="Name" formControlName="username" required class="w-full" />
                 <mat-error> Please provide a name </mat-error>
               </mat-form-field>
             </mat-list-item>
-            <mat-list-item >
+            <mat-list-item>
               <div>
-              <mat-checkbox formControlName="isAdmin" class="w-full">IsAdmin</mat-checkbox>
-            </div>
+                <mat-checkbox formControlName="isAdmin" class="w-full">IsAdmin</mat-checkbox>
+              </div>
             </mat-list-item>
+
             <mat-list-item class="flex justify-between items-center">
-              <button [disabled]="loading" 
-              class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">
+              <button [disabled]="loading" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded  mx-4">
                 Update
               </button>
               <mat-spinner [diameter]="30" *ngIf="loading"></mat-spinner>
-              <a routerLink="/admin/users" 
-              class="bg-gray-500 hover:bg-gray-700 text-white py-2 px-4 rounded"> Back </a>
+              <a routerLink="/admin/users" class="bg-gray-500 hover:bg-gray-700 text-white py-3 px-4 rounded"> Back </a>
             </mat-list-item>
           </mat-list>
         </form>

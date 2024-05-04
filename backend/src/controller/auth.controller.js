@@ -27,7 +27,7 @@ authContr.registerUser = asyncHandler(async (req, res) => {
     };
     const newUser = (await UserModel.create(reqBody))
     const { password, ...rest } = newUser._doc;
-    console.log('registerUser password: '); console.log(password.split('0')[0]);
+    console.log('registerUser password: ', password.split('0')[0]);
     res.send({ message: 'User registered', ...rest, token: generateToken(newUser), });
     // res.send({ message: 'User registered', newUser, token: generateToken(newUser), });
 
@@ -41,7 +41,7 @@ authContr.login = asyncHandler(async (req, res) => {
     console.log('authContr.login - user: '); console.log(user);
     if (bcrypt.compareSync(req.body.password, user.password)) {
       const { password, ...rest } = user._doc;
-      console.log('login password, Username: '); console.log(password.split('0')[0], rest.username);
+      console.log('login password, Username: ', password.split('0')[0], rest.username);
       res.send({ message: 'User logged in', ...rest, token: generateToken(user), });
     }
   } else {
@@ -67,7 +67,7 @@ authContr.updateProfile = asyncHandler(async (req, res) => {
       user.names = { firstname: tmpName[0], lastname: tmpName[tmpName.length - 1], };
       const updatedUser = await user.save();
       const { password, ...rest } = updatedUser._doc;
-      console.log('updated profile password: '); console.log(password.split('0')[0]);
+      console.log('updated profile password: ', password.split('0')[0]);
       res.send({ ...rest, token: generateToken(updatedUser), });
     } else {
       res.status(404).send({ message: 'User Not Found' });

@@ -15,7 +15,7 @@ userContr.getUser = asyncHandler(async (req, res) => {
   const user = await UserModel.findById(req.params.id);
   if (user) {
     const { password, ...rest } = user._doc;
-    console.log('getUser password: '); console.log(password);
+    console.log('getUser password: ', password.split('0')[0]);
     res.send(rest);
   } else {
     res.status(404).send({ message: 'User Not Found' });
@@ -45,7 +45,7 @@ userContr.editUser = asyncHandler(async (req, res) => {
       };
       const updatedUser = await user.save();
       const { password, ...rest } = updatedUser._doc;
-      console.log('editUser password: '); console.log(password);
+      console.log('registerUser password: ', password.split('0')[0]);
       res.send({ message: 'User Updated', rest, token: generateToken(user), });
     } else {
       res.status(404).send({ message: 'User Not Found' });
