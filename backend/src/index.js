@@ -6,7 +6,6 @@ const dotenv = require('dotenv');
 const express = require('express');
 dotenv.config();
 const connectDB = require('./db/connection');
-// const runDbConnect = require('./db/dbConnect');
 
 const dBaseSeed = require('./db/seeder');
 const uploadRoute = require('./routers/upload.routes');
@@ -44,7 +43,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 connectDB();
-// runDbConnect().catch(console.dir);
 
 app.use('/api/seeder', dBaseSeed);
 app.use('/api/uploads', uploadRoute);
