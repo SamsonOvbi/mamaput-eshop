@@ -33,7 +33,6 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
     // .sort({ id: sort })
     .sort(sortOrder)
     .then((products) => {
-      console.log("products[0]: "); console.log(products[0]);
       res.json(products);
     })
     .catch((err) => console.log(err));
@@ -97,14 +96,12 @@ productContr.getProductsInCategory = asyncHandler(async (req, res) => {
   const sort = req.query.sort === 'desc' ? -1 : 1;
   const rating = req.query.rating && Number(req.query.rating) !== 0 ? Number(req.query.rating) : 1;
 
-  // const categoryFilter = category ? { category } : {};
   const categoryFilter = category ? category : {};
   const ratingFilter = rating ? { rating: { $gte: rating } } : {};
 
   console.log("categoryFilter: "); console.log(categoryFilter);
   console.log("ratingFilter: "); console.log(ratingFilter);
   const product = await ProductModel.find({ ...categoryFilter, ...ratingFilter }).select(['-_id']).limit(limit).sort({ _id: sort })
-  // const product = await ProductModel.find({ ...categoryFilter, ...ratingFilter }).select(['-_id']).limit(limit).sort({ _id: sort, })
   if (product) {
     res.send(product);
   } else {
@@ -129,8 +126,6 @@ productContr.addProduct = asyncHandler(async (req, res) => {
     description: (req.body.price || 'sample description'),
   });
 
-  // const createdProduct = await product.save();
-  // res.send(createdProduct);
   res.send(product);
 });
 
@@ -168,12 +163,9 @@ productContr.writeReview = asyncHandler(async (req, res) => {
   const product = await ProductModel.findById(productId);
   if (product) {
     if (product.reviews.find((x) => x.username === req.user.username)) {
-      // return res.status(400)
       res.status(400).send({ message: 'You already submitted a review' });
       return;
     }
-    // console.log('req.user.username: '); console.log(req.user.username);
-    // console.log('req.user: '); console.log(req.user);
     const review = {
       username: req.user.username,
       rating: Number(req.body.rating),
@@ -182,7 +174,6 @@ productContr.writeReview = asyncHandler(async (req, res) => {
     product.reviews.push(review);
     product.numReviews = product.reviews.length;
     product.rating = product.reviews.reduce((a, c) => c.rating + a, 0) / product.reviews.length;
-    // console.log('product.reviews: '); console.log(product.reviews);
     const updatedProduct = await product.save();
     res.status(201).send({
       message: 'Review Created',
