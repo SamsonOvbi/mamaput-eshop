@@ -2,7 +2,7 @@
   "name": "mamaput-eshop",
   "version": "0.0.0",
   "engines": {
-    "node": "<= 18 <21"
+    "node": "<=18 <21"
   },
   "scripts": {
     "ng": "ng",
@@ -13,8 +13,5 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-  },
-  "presets": [
-    "@babel/preset-env"
-  ]
+  }
 }
