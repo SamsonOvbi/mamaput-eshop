@@ -69,17 +69,5 @@ export class SideBarComponent implements OnInit {
     this.rating = _rating;
   }
   
-  // onInputChange(event: Event, isLower: boolean) {
-  //   const value = (event.target as HTMLInputElement).valueAsNumber;
-  //   if (value >= this.minValue && value <= this.maxValue) {
-  //     if (isLower) {
-  //       this.minValue = Math.max(value, this.maxValue - this.stepValue);
-  //     } else {
-  //       this.maxValue = Math.min(value, this.minValue + this.stepValue);
-  //     }
-  //   }
-  // }
-
-
   
 }

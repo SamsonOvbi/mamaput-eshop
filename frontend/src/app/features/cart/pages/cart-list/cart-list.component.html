@@ -1,12 +1,12 @@
 <h1 class ="text-2xl font-bold text-center">Shopping Cart</h1>
-<div class="flex items-center flex-wrap justify-center gap- 4">
+<div class="flex items-center flex-wrap justify-center gap-4">
   <div *ngIf="cart" class="flex-1 w-full md:w-8/12 ">
     <app-cart-table [cart]="cart" [displayedColumns]="displayedColumns"></app-cart-table>
   </div>
 
   <div *ngIf ="currentUser" class="w-full p-2 md:w-3/12">
-    <div class="bg-white shadow-md p-4">
-      <div class="mb-4">
+    <div class="bg-white shadow-md ">
+      <div class="my-4 p-4">
         <h2 class="text-lg font-medium">Subtotal ({{ cart.itemsCount }}) : {{ cart.itemsPrice | currency }}</h2>
       </div>
       <button (click)="checkout()" class="w-full bg-blue-500 text-white p-2 rounded-md">

@@ -6,7 +6,7 @@
 </div>
 <ng-template #result>
   <ng-container *ngIf="!error">
-    <div class="flex flex-wrap gap-5">
+    <div class="flex flex-col md:flex-row md:justify-between ">
       <div class="w-full md:w-1/5 mt-6">
         <mat-nav-list>
           <a mat-list-item routerLink="/admin/dashboard">Dashboard</a>
@@ -15,7 +15,7 @@
           <a mat-list-item routerLink="/admin/users">Users</a>
         </mat-nav-list>
       </div>
-      <div class="w-full md:w-4/5 p-4 just max-h-[70vh] overflow-auto">
+      <div class="w-full md:w-4/5 p-4 just max-h-[80vh] overflow-auto">
         <h1 class="text-2xl font-bold mb-4">Admin Orders</h1>
         <table mat-table [dataSource]="orders" class="shadow-md">
           <!-- Id Column -->

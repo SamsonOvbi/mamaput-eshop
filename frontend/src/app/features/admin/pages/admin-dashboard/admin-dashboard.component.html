@@ -6,8 +6,8 @@
 </div>
 <ng-template #result>
   <ng-container *ngIf="!error">
-    <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
-      <div class="col-span-1">
+    <div class="flex flex-col md:flex-row md:justify-between ">
+      <div class="w-full md:w-1/5 mt-6">
         <mat-nav-list>
           <a mat-list-item class="selected bg-blue-500 text-white" routerLink="/admin/dashboard">Dashboard</a>
           <a mat-list-item routerLink="/admin/orders">Orders</a>
@@ -15,13 +15,13 @@
           <a mat-list-item routerLink="/admin/users">Users</a>
         </mat-nav-list>
       </div>
-      <div class="col-span-4">
+      <div class="w-full md:w-4/5 p-4 just max-h-[80vh] overflow-auto">
         <h2 class="text-2xl font-bold mb-4">Summary</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div class="col-span-1">
             <mat-card class="shadow-md">
               <mat-card-content>
-                <h1 class="text-4xl">{{ totalSales | currency }}</h1>
+                <h1 class="text-2xl">{{ totalSales | currency }}</h1>
                 <p class="text-lg">Total Sales</p>
               </mat-card-content>
               <mat-card-actions>
@@ -32,7 +32,7 @@
           <div class="col-span-1">
             <mat-card class="shadow-md">
               <mat-card-content>
-                <h1 class="text-4xl">{{ numOrders }}</h1>
+                <h1 class="text-2xl">{{ numOrders }}</h1>
                 <p class="text-lg">Num Orders</p>
               </mat-card-content>
               <mat-card-actions>
@@ -43,7 +43,7 @@
           <div class="col-span-1">
             <mat-card class="shadow-md">
               <mat-card-content>
-                <h1 class="text-4xl">{{ numUsers }}</h1>
+                <h1 class="text-2xl">{{ numUsers }}</h1>
                 <p class="text-lg">Num Users</p>
               </mat-card-content>
               <mat-card-actions>
