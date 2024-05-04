@@ -32,7 +32,7 @@ app.use(
     credentials: true, 
     origin: [
       'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
-      'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com'
+      'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com',
     ],
   })
 );
