@@ -2,10 +2,10 @@
   <button (click)="sidenav.open()" mat-icon-button aria-label="open menu icon">
     <mat-icon>menu</mat-icon>
   </button>
-  <a class="blog-1 text-white text-lg py-2 px-4" mat-button routerLink="/home">{{appName}}</a>
+  <a class="blog-1 text-white text-lg py-2 mx-4" mat-button routerLink="/home">{{appName}}</a>
 
-  <div class="flex-1">
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex items-center">
+  <div class="flex-1 mx-4">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex justify-center items-center ">
       <mat-form-field floatLabel="auto" class="mx-auto w-full hide-small-screen ">
         <input matInput placeholder="Search..." formControlName="name" name="query" >
       </mat-form-field>

@@ -54,12 +54,18 @@ app.use('/api/orders', orderRoute);
 app.use('/api/payment', paymentRoute);
 app.use('/api/config', mapRoute);
 
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
-});
-
 app.get('/keep-alive', (req, res) => {
   res.status(200).send('Server is alive');
+});
+
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
+// });
+
+// After all your API routes...
+// Catch-all handler for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
 });
 
 // powershell. In the "Add arguments" field, enter:
