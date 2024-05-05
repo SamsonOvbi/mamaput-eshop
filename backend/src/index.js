@@ -27,15 +27,16 @@ orderRoute.use(rateLimiter); // Apply rate limiter middleware
 orderRoute.use(helmet());
 // Use Morgan middleware for logging HTTP requests
 orderRoute.use(morgan('combined'));
-app.use(
-  cors({ 
-    credentials: true, 
-    origin: [
-      'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
-      'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com',
-    ],
-  })
-);
+app.use(cors());
+// app.use(
+//   cors({ 
+//     credentials: true, 
+//     origin: [
+//       'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
+//       'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com',
+//     ],
+//   })
+// );
 
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));
@@ -53,14 +54,6 @@ app.use('/api/carts', cartRoute);
 app.use('/api/orders', orderRoute);
 app.use('/api/payment', paymentRoute);
 app.use('/api/config', mapRoute);
-
-app.get('/keep-alive', (req, res) => {
-  res.status(200).send('Server is alive');
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
-});
 
 // After all your API routes...
 // Catch-all handler for all other routes
