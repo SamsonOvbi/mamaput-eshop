@@ -14,7 +14,7 @@ describe('ProductCardComponent', () => {
 
   beforeEach(async () => {
     mockTitleService = jasmine.createSpyObj('Title', ['setTitle']);
-    mockSharedService = { appTitle: 'Mama Blog', baseUrl: 'http://localhost:4200/', userAddress: '' } as SharedService;
+    mockSharedService = { appTitle: 'MamaPut eShop', baseUrl: 'http://localhost:4200/', userAddress: '' } as SharedService;
 
     await TestBed.configureTestingModule({
       declarations: [ ProductCardComponent ],

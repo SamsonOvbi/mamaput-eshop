@@ -12,9 +12,9 @@ const options = {
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoUri, options);
-    console.log(`connected to mongodb: ` + 'successfully');
+    console.log(`connected to mongodb atlas: ` + 'successfully');
   } catch (err) {
-    console.log(`error connecting to mongodb : ${mongoUri}`);
+    console.log(`error connecting to mongodb atlas : ${mongoUri}`);
     console.error(err);
   }
 }

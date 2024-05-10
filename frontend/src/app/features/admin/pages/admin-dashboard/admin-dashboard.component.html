@@ -1,7 +1,7 @@
-<div *ngIf="loading; else result" class="flex justify-center items-center mt-40">
-  <mat-progress-bar class="w-full"></mat-progress-bar>
-  <div class="absolute">
-    <mat-spinner></mat-spinner>
+<div *ngIf="loading; else result">
+  <mat-progress-bar ></mat-progress-bar>
+  <div class="relative flex items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
   </div>
 </div>
 <ng-template #result>
@@ -15,7 +15,7 @@
           <a mat-list-item routerLink="/admin/users">Users</a>
         </mat-nav-list>
       </div>
-      <div class="w-full md:w-4/5 p-4 just max-h-[80vh] overflow-auto">
+      <div class="w-full md:w-4/5 p-4 max-h-[80vh] overflow-auto">
         <h2 class="text-2xl font-bold mb-4">Summary</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div class="col-span-1">

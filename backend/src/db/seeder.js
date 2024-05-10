@@ -18,7 +18,7 @@ dBaseSeed.post('/populate-database', async (req, res) => {
   // const bookData = require('./data/books.json');
   const productData = require('./data/products.json');
   // const roleData = require('./data/roles.json');
-  const userData = require('./data/user.data.js');
+  // const userData = require('./data/user.data.js');
   // const fakerStoreData = require('./data/faker-store.json');
   // const orderData = require('./data/orders.json');
   // const cartData = require('./data/carts.json');
@@ -27,7 +27,7 @@ dBaseSeed.post('/populate-database', async (req, res) => {
     // await ProductModel.create(bookData);
     await ProductModel.create(productData);
     // await RoleModel.create(rollData);
-    await UserModel.create(userData);
+    // await UserModel.create(userData);
     // await OrderModel.create(orderData);
     // await CartModel.create(cartData);
 
@@ -50,8 +50,8 @@ dBaseSeed.get('/read-database', async (req, res) => {
 
     const readings = { orderData, cartData, productData, roleData, userData }
     console.log('Data read from database...', readings.productData);
-    // res.json({ productData  });
-    res.json(readings.orderData, readings.productData, readings.userData, readings.cartData);
+    res.json({ productData  });
+    // res.json(readings.orderData, readings.productData, readings.userData, readings.cartData);
 
   } catch (err) {
     console.error(err);
@@ -66,7 +66,7 @@ dBaseSeed.post('/delete-database', async (req, res) => {
     // await OrderModel.deleteMany();
     await ProductModel.deleteMany();
     // await RoleModel.deleteMany();
-    await UserModel.deleteMany();
+    // await UserModel.deleteMany();
     const message = `OrderModel Data Destroyed...`
     console.log(message);
     res.json(message);

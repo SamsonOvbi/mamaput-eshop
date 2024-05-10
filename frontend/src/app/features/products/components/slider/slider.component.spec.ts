@@ -1,8 +1,8 @@
 import { SliderComponent } from "./slider.component";
 
 // Mocks
-const mockTitleService = jasmine.createSpyObj('Slide Products - Mama Blog', ['setTitle']);
-const mockSharedService = jasmine.createSpyObj('Mama Blog', ['appTitle']);
+const mockTitleService = jasmine.createSpyObj('Slide Products - MamaPut eShop', ['setTitle']);
+const mockSharedService = jasmine.createSpyObj('MamaPut eShop', ['appTitle']);
 
 // Test data 
 const testProducts: any = [
@@ -52,7 +52,7 @@ describe('SliderComponent', () => {
     component.products = jasmine.createSpyObj(['someMethod']);
     spyOn(component, 'loadImage');
     component.products = testProducts;
-    mockSharedService.appTitle = 'Mama Blog';     
+    mockSharedService.appTitle = 'MamaPut eShop';     
   });
 
   afterEach(() => {
@@ -75,7 +75,7 @@ describe('SliderComponent', () => {
   it('should set title on init', () => {
     component.ngOnInit();
     expect(mockTitleService.setTitle)
-      .toHaveBeenCalledWith('Slide Products - Mama Blog');
+      .toHaveBeenCalledWith('Slide Products - MamaPut eShop');
   });
 
   // Additional tests...

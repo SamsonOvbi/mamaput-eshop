@@ -5,13 +5,5 @@
 
 <h2 *ngIf="showSlides">Latest Products</h2>
 
-<!-- <h2 >Latest Products</h2> -->
-
-<!-- <app-product-card *ngIf="showSlides" [productsList]="productsList" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
-</app-product-card>
- 
-<app-product-card *ngIf="!showSlides" [productsSearch]="productsSearch_2" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
-</app-product-card> -->
-
 <app-product-card [products]="products" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
 </app-product-card>

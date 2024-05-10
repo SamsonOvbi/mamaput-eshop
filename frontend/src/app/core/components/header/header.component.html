@@ -1,39 +1,44 @@
-<mat-toolbar class="fixed top-0 left-0 right-0 z-50" color="primary">
-  <button (click)="sidenav.open()" mat-icon-button aria-label="open menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <a class="blog-1 text-white text-lg py-2 mx-4" mat-button routerLink="/home">{{appName}}</a>
+<mat-toolbar class="fixed top-0 left-0 right-0 z-50 flex flex-wrap mb-2" color="primary">
+  <div>
+    <button (click)="sidenav.open()" mat-icon-button aria-label="open menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a class="blog-1 text-white text-lg py-2 mx-2" mat-button routerLink="/home">{{appName}}</a>
+  </div>
 
-  <div class="flex-1 mx-4">
+  <div class="flex-1 max-w-60">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex justify-center items-center ">
-      <mat-form-field floatLabel="auto" class="mx-auto w-full hide-small-screen ">
-        <input matInput placeholder="Search..." formControlName="name" name="query" >
+      <mat-form-field floatLabel="auto" class="mx-auto w-full">
+        <input matInput placeholder="Search..." formControlName="name" name="query">
       </mat-form-field>
-      <button class="hide-small-screen bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-4 rounded" mat-button color="secondary">
+      <button class=" bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-2 rounded" mat-button
+        color="secondary">
         <mat-icon>search</mat-icon>
       </button>
     </form>
   </div>
 
-  <a mat-button routerLink="cart" class="relative">
-    <mat-icon *ngIf="itemsCount > 0" [matBadge]="itemsCount" matBadgePosition="after" matBadgeOverlap="false"
-      matBadgeColor="accent" class="text-white">shopping_cart</mat-icon>
-    <mat-icon *ngIf="itemsCount === 0" class="text-white">shopping_cart</mat-icon>
-  </a>
-  <a mat-button *ngIf="!currentUser" routerLink="login" class="text-white">Login</a>
+  <div class="bg-blue-700">
+    <a mat-button routerLink="cart" class="relative">
+      <mat-icon *ngIf="itemsCount > 0" [matBadge]="itemsCount" matBadgePosition="after" matBadgeOverlap="false"
+        matBadgeColor="accent" class="text-white">shopping_cart</mat-icon>
+      <mat-icon *ngIf="itemsCount === 0" class="text-white">shopping_cart</mat-icon>
+    </a>
+    <a mat-button *ngIf="!currentUser" routerLink="login" class="text-white">Login</a>
 
-  <ng-container *ngIf="currentUser">
-    <button mat-button [matMenuTriggerFor]="userMenu" class="text-white">
-      {{currentUser.username}}
-      <mat-icon>expand_more</mat-icon>
-    </button>
-    <mat-menu #userMenu="matMenu">
-      <a mat-menu-item routerLink="profile">Profile</a>
-      <a mat-menu-item routerLink="order-history">Order History</a>
-      <a *ngIf="currentUser.isAdmin" mat-menu-item routerLink="admin/dashboard">Admin</a>
-      <button *ngIf="currentUser" mat-menu-item (click)="logout()" class="text-red-500 hover:text-red-700">
-        LogOut
+    <ng-container *ngIf="currentUser">
+      <button mat-button [matMenuTriggerFor]="userMenu" class="text-white">
+        {{currentUser.username}}
+        <mat-icon>expand_more</mat-icon>
       </button>
-    </mat-menu>
-  </ng-container>
+      <mat-menu #userMenu="matMenu">
+        <a mat-menu-item routerLink="profile">Profile</a>
+        <a mat-menu-item routerLink="order-history">Order History</a>
+        <a *ngIf="currentUser.isAdmin" mat-menu-item routerLink="admin/dashboard">Admin</a>
+        <button *ngIf="currentUser" mat-menu-item (click)="logout()" class="text-red-500 hover:text-red-700">
+          LogOut
+        </button>
+      </mat-menu>
+    </ng-container>
+  </div>
 </mat-toolbar>

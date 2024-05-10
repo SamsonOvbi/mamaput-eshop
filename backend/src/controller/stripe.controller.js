@@ -1,12 +1,12 @@
 'use strict';
-// const express = require("express");
-// const stripeContr = express.Router();
+
+const dotenv = require('dotenv');
+dotenv.config();
 const asyncHandler = require('express-async-handler');
-// const stripe = require('stripe');
 const stripeContr = {};
 
 //Stripe Checkout Implementation
-const stripe = require('stripe')('sk_test_51MieJTExOuRzEOei54rp1sF0La9Cs9Dn51BjVpphdDgy8G6tocCmd0plEjtmUgcDGVUbbb3he588d3s6GDeEI4SQ00sCMXpNnO');
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // stripeContr.post('/checkout', async (req, res, next) => {
 stripeContr.checkout = async (req, res, next) => {

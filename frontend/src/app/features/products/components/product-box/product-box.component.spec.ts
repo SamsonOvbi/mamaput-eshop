@@ -27,7 +27,7 @@ describe('ProductBoxComponent', () => {
     messageDialogServiceMock = { openMessageDlg: jasmine.createSpy('openMessageDlg') };
     cartServiceMock = { addItem: jasmine.createSpy('addItem') };
     titleServiceMock = { setTitle: jasmine.createSpy('setTitle') };
-    sharedServiceMock = { appTitle: 'Mama Blog' };
+    sharedServiceMock = { appTitle: 'MamaPut eShop' };
 
     component = new ProductBoxComponent(
       productServiceMock,
@@ -44,7 +44,7 @@ describe('ProductBoxComponent', () => {
         { provide: MessageDialogService, useValue: messageDialogServiceMock },
         { provide: CartService, useValue: cartServiceMock },
         { provide: Title, useValue: titleServiceMock },
-        { provide: SharedService, useValue: { appTitle: 'Mama Blog' } },
+        { provide: SharedService, useValue: { appTitle: 'MamaPut eShop' } },
       ],
       schemas: [NO_ERRORS_SCHEMA]
     })
@@ -75,7 +75,7 @@ describe('ProductBoxComponent', () => {
   });
 
   it('should set title on init', () => {
-    expect(titleServiceMock.setTitle).toHaveBeenCalledWith('Product List - Mama Blog');
+    expect(titleServiceMock.setTitle).toHaveBeenCalledWith('Product List - MamaPut eShop');
   });
 
   it('should correctly update the number of products to display when onItemsCountChange is called', () => {

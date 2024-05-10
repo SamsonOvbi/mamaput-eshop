@@ -11,7 +11,7 @@ class MockTitleService {
 }
 
 class MockSharedService {
-  appTitle = 'Mama Blog';
+  appTitle = 'MamaPut eShop';
 }
 
 describe('ProductHeaderComponent', () => {

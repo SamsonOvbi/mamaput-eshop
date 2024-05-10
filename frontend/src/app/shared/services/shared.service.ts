@@ -5,11 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SharedService {
-  titleBlog = 'Mama Blog'; 
+  titleBlog = 'Mama Blog';  
   appTitle = 'MamaPut eShop'; 
   baseUrl = 'http://localhost:4200/';
   userAddress: string = '';
 
   constructor(private http: HttpClient) { }
-
+ 
 } 

@@ -40,8 +40,9 @@ const upload = multer({
 });
 
 
-uploadRoute.post('/', isAuth, isAdmin, upload.single('image'), uploadContr.uploadSingleImageToCloudinary);
-// uploadRoute.post('/', isAuth, upload.single('image'), uploadContr.uploadSingleImageToStorage);
-// uploadRoute.post('/all', uploadContr.uploadImagesToCloudinary);
+uploadRoute.post('/single', isAuth, isAdmin, upload.single('image'), uploadContr.uploadSingleImageToCloudinary);
+// uploadRoute.post('/single', isAuth, upload.single('image'), uploadContr.uploadSingleImageToStorage);
+uploadRoute.post('/many', uploadContr.uploadManyImagesToCloudinary);
+// uploadRoute.get('/many', uploadContr.uploadManyImagesToCloudinary);
 
 module.exports = uploadRoute;
