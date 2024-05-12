@@ -5,7 +5,6 @@ const express = require('express');
 // Load models
 const OrderModel = require('../models/order.model');
 const ProductModel = require('../models/product.model');
-// const RoleModel = require('../models/role.model');
 const UserModel = require('../models/user.model');
 const CartModel = require('../models/cart.model.js');
 
@@ -39,16 +38,15 @@ dBaseSeed.post('/populate-database', async (req, res) => {
 });
 
 dBaseSeed.get('/read-database', async (req, res) => {
-  let cartData, orderData, productData, roleData, userData;
+  let cartData, orderData, productData, userData;
 
   try {
     orderData = await OrderModel.find();
     cartData = await CartModel.find();
     productData = await ProductModel.find();
-    // roleData = await RoleModel.find();
     userData = await UserModel.find();
 
-    const readings = { orderData, cartData, productData, roleData, userData }
+    const readings = { orderData, cartData, productData, userData }
     console.log('Data read from database...', readings.productData);
     res.json({ orderData });
     // res.json(readings.orderData, readings.productData, readings.userData, readings.cartData);
