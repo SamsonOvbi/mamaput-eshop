@@ -13,7 +13,7 @@ export class ProductCardComponent implements OnInit {
   @Input() products?: Product[];
   @Input() showSlides = true;
   @Input() fullWidthMode = false;
-  @Input() cols = 3;
+  @Input() cols = 2;
   rowHeight = ROW_HEIGHT[this.cols];
 
   //Pass event to parent component

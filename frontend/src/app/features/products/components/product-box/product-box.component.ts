@@ -30,7 +30,7 @@ export class ProductBoxComponent implements OnInit {
   drawerMode = false;
   fullWidthMode = false;
 
-  cols = 3;
+  cols = 2;
   rowHeight = ROW_HEIGHT[this.cols];
   category?: string;
 

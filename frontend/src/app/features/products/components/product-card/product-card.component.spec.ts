@@ -45,7 +45,7 @@ describe('ProductCardComponent', () => {
   });
 
   it('should correctly set the rowHeight property based on the cols input property', () => {
-    component.cols = 3;
+    component.cols = 2;
     component.ngOnInit();
     expect(component.rowHeight).toEqual(350); // Assuming ROW_HEIGHT = { 1: 400, 3: 350, 4: 300 }
   });

@@ -1,15 +1,16 @@
-<div class="overflow-x-auto"> 
-  <mat-grid-list *ngIf="!error" gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+<div class="overflow-x-auto">
+  <mat-grid-list *ngIf="!error" gutterSize="12" [cols]="cols" [rowHeight]="rowHeight">
     <mat-grid-tile *ngFor="let product of products; trackBy: trackByProductId">
       <div class="w-full">
-        <mat-card class="shadow-lg p-5" [ngClass]="{'text-center': !fullWidthMode}" *ngIf="product">
+        <mat-card class="shadow-lg p-3" [ngClass]="{'text-center': !fullWidthMode}" *ngIf="product">
           <div [ngClass]="{'flex': fullWidthMode}">
             <a [routerLink]="'/product-details/' + product.slug">
-              <img class="mb-1 mx-auto" [ngClass]="{'h-[160px]': !fullWidthMode, 'h-[270px] w-[240px]': fullWidthMode}"
+              <img class="mb-1 mx-auto min-w-12"
+                [ngClass]="{'h-[160px]': !fullWidthMode, 'h-[270px] w-[240px]': fullWidthMode}"
                 [src]="product.image" />
             </a>
 
-            <div class="w-full" [ngClass]="{'px-8 flex flex-col justify-between': fullWidthMode}">
+            <div class="w-full" [ngClass]="{'px-2 flex flex-col justify-between': fullWidthMode}">
               <mat-card-content>
                 <span class="font-bold text-xs uppercase mb-1">{{ product.category }}</span>
                 <p class="truncate hover:whitespace-normal">{{ product.name }}</p>
@@ -20,7 +21,8 @@
               <div class="flex justify-between ">
                 <span class="text-red-400">{{ product.price | currency }}</span>
                 <button class="text-blue-700 " (click)="onAddToCart(product)">
-                  <mat-icon>add_shopping_cart</mat-icon> ADD TO CART
+                  <mat-icon>add_shopping_cart</mat-icon> 
+                  <span class="text-sm" >ADD TO CART</span>
                 </button>
               </div>
             </div>
