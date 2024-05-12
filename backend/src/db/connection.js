@@ -12,10 +12,11 @@ const options = {
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoUri, options);
-    console.log(`connected to mongodb atlas: ` + 'successfully');
+    console.log(`connected to mongodb: ` + 'successfully');
   } catch (err) {
     console.error(`error connecting to mongodb: `, err);
   }
 }
 
 module.exports = connectDB;
+  

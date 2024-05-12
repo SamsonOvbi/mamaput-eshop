@@ -13,7 +13,7 @@ const dBaseSeed = express.Router();
 
 // Populate database with JSON data: 
 dBaseSeed.post('/populate-database', async (req, res) => {
-// dBaseSeed.get('/populate-database', async (req, res) => {
+  // dBaseSeed.get('/populate-database', async (req, res) => {
 
   // const bookData = require('./data/books.json');
   const productData = require('./data/products.json');
@@ -35,7 +35,7 @@ dBaseSeed.post('/populate-database', async (req, res) => {
   } catch (err) {
     console.error(err);
   }
-  
+
 });
 
 dBaseSeed.get('/read-database', async (req, res) => {
@@ -50,7 +50,7 @@ dBaseSeed.get('/read-database', async (req, res) => {
 
     const readings = { orderData, cartData, productData, roleData, userData }
     console.log('Data read from database...', readings.productData);
-    res.json({ productData  });
+    res.json({ orderData });
     // res.json(readings.orderData, readings.productData, readings.userData, readings.cartData);
 
   } catch (err) {
@@ -60,7 +60,7 @@ dBaseSeed.get('/read-database', async (req, res) => {
 });
 
 dBaseSeed.post('/delete-database', async (req, res) => {
-// dBaseSeed.get('/delete-database', async (req, res) => {
+  // dBaseSeed.get('/delete-database', async (req, res) => {
   try {
     // await CartModel.deleteMany();
     // await OrderModel.deleteMany();
@@ -74,6 +74,25 @@ dBaseSeed.post('/delete-database', async (req, res) => {
     console.error(err);
   }
 });
+
+// dBaseSeed.post('/delete-orders-except-last-twelve', async (req, res) => {
+  dBaseSeed.get('/delete-orders-except-last-twelve', async (req, res) => {
+    try {
+      // Find the last 12 orders based on creation date
+      const lastTwelveOrders = await OrderModel.find().sort({ createdAt: -1 }).limit(12);
+  
+      // Extract the ids of the last 12 orders
+      const lastTwelveIds = lastTwelveOrders.map(order => order._id);
+  
+      // Delete all orders except the last 12
+      await OrderModel.deleteMany({ _id: { $nin: lastTwelveIds } });
+  
+      res.send({ message: 'All orders except the last twelve have been deleted' });
+    } catch (error) {
+      console.error('Error occurred while deleting orders: ', error);
+      res.status(500).send({ message: 'Internal Server Error' });
+    }
+  });
 
 dBaseSeed.get('/', (req, res) => res.send('Welcome to seeder endpoint'));
 
