@@ -27,16 +27,16 @@ orderRoute.use(rateLimiter); // Apply rate limiter middleware
 orderRoute.use(helmet());
 // Use Morgan middleware for logging HTTP requests
 orderRoute.use(morgan('combined'));
-app.use(cors());
-// app.use(
-//   cors({ 
-//     credentials: true, 
-//     origin: [
-//       'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
-//       'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com',
-//     ],
-//   })
-// );
+// app.use(cors());
+app.use(
+  cors({ 
+    credentials: true, 
+    origin: [
+      'http://localhost:4200', 'http://localhost:4204', 'http://localhost:4000',
+      'http://localhost:4205', 'https://mamaput-eshop-1.onrender.com',
+    ],
+  })
+);
 
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));

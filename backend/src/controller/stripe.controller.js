@@ -51,10 +51,9 @@ stripeContr.checkout = async (req, res, next) => {
         },
         quantity: item.quantity,
       })),
-      mode: 'payment',
-      // success_url: 'https://veggies-and-things-server.onrender.com/success.html',
-      success_url: 'http://localhost:4242/success.html',
-      cancel_url: 'http://localhost:4242/cancel.html'
+      mode: 'payment',  
+      success_url: 'https://mamaput-eshop-1.onrender.com/success.html',
+      cancel_url: 'https://mamaput-eshop-1.onrender.com/cancel.html'
     });
     res.status(200).json(session);
   } catch {
