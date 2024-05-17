@@ -115,3 +115,8 @@ mat-spinner {
     display: block;
   }
 }
+
+ /* CSS rule */
+a[target="_blank"][rel="noopener"] {
+  /* CSS properties */
+}

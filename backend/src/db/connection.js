@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
 // const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/mama-blog';
 const mongoUri = process.env.ATLAS_URI;
+let atOrLocal = mongoUri === process.env.ATLAS_URI ? 'Atlas' : 'local';
 mongoose.Promise = global.Promise; 
 const options = {
   useNewUrlParser: true, useUnifiedTopology: true
@@ -12,7 +13,7 @@ const options = {
 const connectDB = async () => {
   try {
     await mongoose.connect(mongoUri, options);
-    console.log(`connected to mongodb: ` + 'successfully');
+    console.log(`connected to mongodb ${atOrLocal}: ` + 'successfully');
   } catch (err) {
     console.error(`error connecting to mongodb: `, err);
   }

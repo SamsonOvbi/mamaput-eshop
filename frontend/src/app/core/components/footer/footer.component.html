@@ -1,15 +1,15 @@
 <footer>
-  <mat-icon color="warn">favorite</mat-icon>Love  MamaBook?&nbsp;
-
-  <a href="https://twitter/MamaBook" target="_blank" rel="noopener"> Give us a star and/or a like/retweet.
+  <mat-icon color="warn">favorite</mat-icon>Love  {{appTitle}}?&nbsp;
+  
+  <a [href]="appTwitter" target="_blank" rel="noopener"> Give us a star and/or a like/retweet.
     <span >
       <mat-icon color="accent" >star</mat-icon>
       Star
     </span>
   </a>
-  <a href="https://twitter/MamaBook" target="_blank" rel="noopener">
+  <a [href]="appTwitter" target="_blank" rel="noopener">
     <mat-icon color="primary" >chevron_right</mat-icon>
   </a>
   <hr>
-  2020 - 2023 MamaBook. All rights reserved.
+  2020 - {{currentYear}} {{appTitle}}. All rights reserved.
 </footer>

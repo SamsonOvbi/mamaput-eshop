@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   @Input() sidenav!: MatSidenav;
   categories: [] = [];
   searchForm: FormGroup;
-  appName = '';
+  appTitle = '';
   itemsCount: number = 0;
   currentUser: UserInfo | null = null;
 
@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   ngOnInit() {
-    this.appName = this.sharedService.appTitle;
+    this.appTitle = this.sharedService.appTitle;
     this.titleService.setTitle(`Core Header - ${this.sharedService.appTitle}`);
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
     this.cartService.currentCart.subscribe((x) => (this.itemsCount = x.itemsCount));
