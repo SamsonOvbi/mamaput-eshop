@@ -9,6 +9,6 @@
   <div *ngIf="!error">
     <div class="flex justify-center"> {{ productsSearch.length }} Result(s) </div>
     <div class="divider"></div>
-    <app-product-box #productBox [productsSearch]="productsSearch" [showSlides]="showSlides"> </app-product-box>
+    <app-product-box #productBox [category]="category" [productsSearch]="productsSearch" [showSlides]="showSlides"> </app-product-box>
   </div>
 </ng-template>

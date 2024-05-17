@@ -6,14 +6,14 @@
     <a class="blog-1 text-white text-lg py-2 mx-2" mat-button routerLink="/home">{{appName}}</a>
   </div>
 
-  <div class="flex-1 max-w-60">
+  <div class="flex-1 min-w-32">
     <form [formGroup]="searchForm" (ngSubmit)="onSubmit()" class="flex justify-center items-center ">
       <mat-form-field floatLabel="auto" class="mx-auto w-full">
         <input matInput placeholder="Search..." formControlName="name" name="query">
       </mat-form-field>
       <button class=" bg-secondary hover:bg-secondary-dark text-white font-bold py-2 px-2 rounded" mat-button
         color="secondary">
-        <mat-icon>search</mat-icon>
+        <mat-icon class="bg-blue-700 rounded-lg" >search</mat-icon>
       </button>
     </form>
   </div>

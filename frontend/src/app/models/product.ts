@@ -15,11 +15,13 @@ export interface Product {
 }
 
 export interface ProductFilter {
+  pageSize?: string;
+  pageNumber: number;
   category?: string;
   name?: string;
   order?: string; // Property for orderForm
   rating?: number; // Property for ratingForm
-  minValue?: number; 
-  maxValue?: number; 
+  minValue?: number;
+  maxValue?: number;
   // Add other filter properties if needed
 }

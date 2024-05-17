@@ -3,4 +3,4 @@ export type Sort = 'desc' | 'asc' | 'lowest' | 'highest' | 'toprated';
 export type Order = 'lowest' | 'highest' | 'toprated' | 'a-z' | 'z-a';
 
 /** The height of product box */
-export const ROW_HEIGHT: { [id: number]: number } = { 1: 450, 2: 350, 4: 300 };
+export const ROW_HEIGHT: { [id: number]: number } = { 1: 300, 2: 300, 4: 340 };

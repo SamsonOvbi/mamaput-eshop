@@ -1,4 +1,4 @@
-import { Component, ViewChild, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Input, Output, HostListener } from '@angular/core';
 import { Order, Sort } from 'src/app/models/types';
 
 import { MatSidenav } from '@angular/material/sidenav';
@@ -14,14 +14,14 @@ import { ProductService } from './shared/services/product.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  public isLargeScreen!: boolean;
+  public isOpen: boolean = false;
+
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   loading = true;
   error = false;
   products!: Product[];
-
-  /** This variable contain subscription from service that would be removed when the component is destroyed to avoid memory leaks */
-  productsSubscription: Subscription = new Subscription();
 
   constructor(
     private titleService: Title,
@@ -35,14 +35,24 @@ export class AppComponent {
   }
     this.titleService.setTitle(`title - ${this.sharedService.appTitle}`);
   }
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    event.preventDefault(); 
+    this.checkScreenSize();
+  }
+
+  @HostListener('mousemove', ['$event'])
+  onClick2(event: KeyboardEvent) { 
+    event.preventDefault(); 
+    this.checkScreenSize();
+  };
+
+  private checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 769;
+  }
 
   logBackdropClick() {
     console.log('Backdrop clicked');
   }
-  ngOnDestroy(): void {
-    if (this.productsSubscription) {
-      this.productsSubscription.unsubscribe();
-    }
-  }
-
 }

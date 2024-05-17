@@ -34,7 +34,7 @@ export class ProductService {
 
   getAllProducts(
     limit = '20', sort = 'desc', category?: string, rating = 0, order = 'lowest',
-    minValue = 0, maxValue = 1000,): Observable<Array<Product>> {
+    minValue = 0, maxValue = 2000,): Observable<Array<Product>> {
     return this.httpClient.get<Array<Product>>(
       `${this.apiUrl}/${category ? '/category/' + category : ''
       // }?sort=${sort}&rating=${rating}&limit=${limit}`
@@ -81,7 +81,7 @@ export class ProductService {
     if (productFilter.minValue) { qs += `minValue=${productFilter.minValue}&`; }
     if (productFilter.maxValue) { qs += `maxValue=${productFilter.maxValue}&`; }
     // Trim the trailing '&' if it exists
-    qs = qs.endsWith('&') ? qs.slice(0, -1) : qs; 
+    qs = qs.endsWith('&') ? qs.slice(0, -1) : qs;
     console.log('searchProducts - qs_: ', qs);
     return this.http.get(`${this.apiUrl}?${qs}`, this.options);
   }

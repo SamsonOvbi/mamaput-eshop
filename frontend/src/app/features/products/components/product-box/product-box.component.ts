@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, OnInit, HostListener, Input, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, ViewChild, OnDestroy, OnInit, HostListener, Input, SimpleChanges, SimpleChange, OnChanges } from '@angular/core';
 import { Observable, Subscription, map } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { MatDrawer, MatDrawerMode } from '@angular/material/sidenav';
@@ -20,11 +20,11 @@ import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/mess
   templateUrl: './product-box.component.html',
   styleUrls: ['./product-box.component.scss']
 })
-export class ProductBoxComponent implements OnInit {
+export class ProductBoxComponent implements OnInit, OnChanges, OnDestroy {
   @Input() productsList!: Product[];
   @Input() productsSearch!: Product[];
   products!: Product[];
-  // @Input() products!: Product[];
+
   @Input() showSlides!: boolean;
   @ViewChild(MatDrawer) drawer!: MatDrawer;
   drawerMode = false;
@@ -32,15 +32,14 @@ export class ProductBoxComponent implements OnInit {
 
   cols = 2;
   rowHeight = ROW_HEIGHT[this.cols];
-  category?: string;
+  @Input() category?: string;
 
-  sort = 'desc';
-  count = 20;
-  noOfVisits = 0
+  totalProducts = 20;
+  itemsPerPage = 20;
   rating = 0;
   order = 'lowest';
   minValue = 0;
-  maxValue = 40;
+  maxValue = 2000;
   appTitle = '';
 
   loading = true;
@@ -49,11 +48,11 @@ export class ProductBoxComponent implements OnInit {
   changes!: SimpleChanges;
 
   /** This variable contain subscription from service that would be removed when the component is destroyed to avoid memory leaks */
-  productsSubscription: Subscription = new Subscription();
+  productsSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     private productService: ProductService,
-    
+
     private messageDialogService: MessageDialogService,
     private cartService: CartService,
     private titleService: Title,
@@ -64,65 +63,43 @@ export class ProductBoxComponent implements OnInit {
   ngOnInit() {
     this.appTitle = this.sharedService.appTitle;
     this.titleService.setTitle(`Product Box - ${this.appTitle}`);
-    this.ngOnChanges(this.changes);
-  }
-
-  getProductList(newCount = 20) {
-    this.productsSubscription = this.productService.getAllProducts(
-      newCount.toString(), this.sort, this.category, this.rating, this.order,
-      this.minValue, this.maxValue,
-    ).subscribe((_products) => {
-      this.products = _products;
-    });
-  }
-
-  /**
-   * Update the number of product to display
-   * @param count is the no of products to display
-   */
-
-  onItemsCountChange(itemsCount: number): void {
-    this.getProductList(itemsCount);
-  }
-
-  /**
-   * Updates page layout
-   * @param colsCount is the number of columns to display the product list per row
-   */
-  onUpdateColumnsCount(colsCount: number): void {
-    this.cols = colsCount;
-    this.rowHeight = ROW_HEIGHT[this.cols];
   }
 
   onAddToCart(product: Product) {
     let message;
     const { _id, image, name, slug, price } = product;
     const item = { _id, image, name, slug, price, quantity: 1 };
-    this.cartService.addItem(item).subscribe({
+    this.productsSubscription = this.cartService.addItem(item).subscribe({
       next: (productName) => {
-        // message = `${productName} added to the cart`;
         message = `Item added to the cart:   ${productName}`;
-        this.messageDialogService.openMessageDlg({message: message, type: 'success'});
+        this.messageDialogService.openMessageDlg({ message: message, type: 'success' });
       },
       error: (err: any) => {
         message = `${err.message} \n Product Not added`;
-        this.messageDialogService.openMessageDlg({message: message, type: 'error'});
+        this.messageDialogService.openMessageDlg({ message: message, type: 'error' });
       },
 
     });
   }
 
-  ngOnChanges(_changes: SimpleChanges): void {    
-    if (_changes.productsSearch || _changes.productsList) {
-      this.changes = _changes;
-      this.products = _changes.productsSearch?.currentValue || _changes.productsList?.currentValue;
-    }
+  /**
+   * Updates page layout
+   * @param colsCount is the number of columns to display the product list per row
+   */
+  onColumnsCountUpdate(colsCount: number): void {
+    this.cols = colsCount;
+    this.rowHeight = ROW_HEIGHT[this.cols];
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.productsSearch || changes.productsList) {
+      this.products = changes.productsSearch?.currentValue || changes.productsList?.currentValue;
+      this.totalProducts = this.productsSearch?.length || this.productsList?.length;
+    }  
   }
 
   ngOnDestroy(): void {
-    if (this.productsSubscription) {
-      this.productsSubscription.unsubscribe();
-    }
+    this.productsSubscription?.unsubscribe();
   }
 
 }

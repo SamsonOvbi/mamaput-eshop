@@ -3,22 +3,12 @@
   <div class="flex justify-between">
     <button mat-button (click)="drawer.toggle()">
       <!-- <mat-icon>menu</mat-icon> -->
-      <!-- <div *ngIf="!category">{{category | titlecase }}</div> -->
+      <div *ngIf="category">{{category | titlecase }} Category</div>
       <div *ngIf="!category">Products View</div>
     </button>
 
     <div class="flex items-center">
-      <div>
-        <button mat-button [matMenuTriggerFor]="pageSizeMenu">
-          <div> Show {{pageSize}} <mat-icon>expand_more</mat-icon> </div>
-        </button>
-        <mat-menu #pageSizeMenu="matMenu">
-          <div *ngFor="let item of pageSizeChoose">
-            <button mat-menu-item (click)="onItemsUpdated(item)">{{item}}</button>
-          </div>
-        </mat-menu>
-      </div>
-
+      <!-- <button class="bg-green-600 text-white w-9 h-9 rounded-full"></button> -->
       <button (click)="onColumnsUpdated(1)">
         <mat-icon class="bg-green-600 text-white">view_list</mat-icon>
       </button>
@@ -28,7 +18,6 @@
       <button (click)="onColumnsUpdated(4)">
         <mat-icon class="bg-blue-600 text-white">view_comfy</mat-icon>
       </button>
-
     </div>
   </div>
 </mat-card>

@@ -20,6 +20,8 @@ const mapRoute = require('./routers/map.routes');
 const rateLimiter = require('./middleware/rateLimiter');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const startKeepAliveCron = require('./utils/keep-alive-cron');
+startKeepAliveCron();
 
 const app = express();
 

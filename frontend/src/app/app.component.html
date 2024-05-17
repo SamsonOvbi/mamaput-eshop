@@ -1,10 +1,14 @@
-<mat-sidenav-container class="mt-2 " mode="over" >
-  <mat-sidenav class="sidenav " #sidenav >
-    <app-side-bar [sidenav]="sidenav" ></app-side-bar>
+<mat-sidenav-container class="mt-2" mode="over">
+  <mat-sidenav #sidenav [mode]="isLargeScreen ? 'side' : 'over'" [opened]="isLargeScreen || isOpen">
+    <app-side-bar [sidenav]="sidenav"></app-side-bar>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="app">
-      <app-header [sidenav]="sidenav" class="mb-8 "> </app-header>
+      <app-header [sidenav]="sidenav" class="mb-8" >
+        <!-- Button to toggle sidenav on small screens -->
+        <button (click)="isOpen = !isOpen" *ngIf="!isLargeScreen">Menu</button>
+      </app-header>
+      <div [ngClass]="{'mb-24': !isLargeScreen, 'mb-1': isLargeScreen}" ></div>
       <div class="container" style="padding-top:70px;">
         <router-outlet></router-outlet>
       </div>

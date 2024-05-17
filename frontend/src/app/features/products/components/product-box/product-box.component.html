@@ -1,9 +1,8 @@
-<!-- <app-product-header ></app-product-header> -->
-<app-product-header [drawer]="drawer" [category]="category" (itemsCountChange)="onItemsCountChange($event)"
-  (columnsCountChange)="onUpdateColumnsCount($event)">
+
+<app-product-header [drawer]="drawer" [category]="category" (columnsCountChange)="onColumnsCountUpdate($event)">
 </app-product-header>
 
 <h2 *ngIf="showSlides">Latest Products</h2>
 
-<app-product-card [products]="products" [fullWidthMode]="cols === 1" [cols]="cols" (addToCart)="onAddToCart($event)">
+<app-product-card [products]="products" [totalProducts]="totalProducts" [fullWidthMode]="cols === 1" [cols]="cols" [rowHeight]="rowHeight" (addToCart)="onAddToCart($event)">
 </app-product-card>

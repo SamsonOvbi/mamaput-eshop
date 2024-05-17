@@ -3,7 +3,7 @@ import { SnackbarService } from 'src/app/shared/services/snackBar/snackbar.servi
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 // import { nextTick } from 'process';
-import { Product } from 'src/app/models/product';
+import { Product, ProductFilter } from 'src/app/models/product';
 import { ProductService } from 'src/app/shared/services/product.service';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { MatDrawer } from '@angular/material/sidenav';
@@ -35,7 +35,7 @@ export class SearchComponent {
   error = false;
 
   /** This variable contain subscription from service that would be removed when the component is destroyed to avoid memory leaks */
-  productsSubscription!: Subscription;
+  productsSubscription: Subscription = Subscription.EMPTY;
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -65,12 +65,17 @@ export class SearchComponent {
   }
 
   searchProducts() {
-    const reqBody = {
-      category: this.category, name: this.name, order: this.order, rating: this.rating,
+    const productFilter: ProductFilter = {
+      pageSize: '20', pageNumber: 1, category: this.category || '',
+      name: this.name, order: this.order, rating: this.rating,
       minValue: this.minValue, maxValue: this.maxValue,
-    };
+    }
+    // const reqBody = {
+    //   category: this.category, name: this.name, order: this.order, rating: this.rating,
+    //   minValue: this.minValue, maxValue: this.maxValue,
+    // };
     // this.productService.getProducts().subscribe({
-    this.productsSubscription = this.productService.searchProducts(reqBody).subscribe({
+    this.productsSubscription = this.productService.searchProducts(productFilter).subscribe({
       next: (_products: Product[]) => {
         this.loading = false;
         this.productsSearch = [..._products];

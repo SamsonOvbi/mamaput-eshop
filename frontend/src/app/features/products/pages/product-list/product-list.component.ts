@@ -16,15 +16,15 @@ import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/mess
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListComponent implements OnInit {
-  @ViewChild('productBox') productBox!: ProductBoxComponent;  
+  @ViewChild('productBox') productBox!: ProductBoxComponent;
   productsList!: Product[];
   showSlides = true;
   loading = true;
   error = false;
   playInterval = 3000;
 
-    /** This variable contain subscription from service that would be removed when the component is destroyed to avoid memory leaks */
-    productsSubscription: Subscription = new Subscription();
+  /** This variable contain subscription from service that would be removed when the component is destroyed to avoid memory leaks */
+  productsSubscription: Subscription = Subscription.EMPTY;
 
   constructor(
     private productService: ProductService,
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
     private titleService: Title,
     private sharedService: SharedService,
     private cdRef: ChangeDetectorRef,
-  ) {    
+  ) {
   }
 
   ngOnInit() {
@@ -42,8 +42,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProducts() {
-    // this.productsSubscription = this.productService.getAllProducts().subscribe({
-      this.productsSubscription = this.productService.getProducts().subscribe({
+    this.productsSubscription = this.productService.getProducts().subscribe({
       next: (products: Product[]) => {
         if (products) { }
         this.loading = false;
@@ -53,9 +52,9 @@ export class ProductListComponent implements OnInit {
       error: (err: any) => {
         this.loading = false;
         this.error = true;
-        this.messageDialogService.openMessageDlg({message: err, type: 'error'});
+        this.messageDialogService.openMessageDlg({ message: err, type: 'error' });
       },
-      
+
     });
   }
 

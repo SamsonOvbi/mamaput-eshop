@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ROW_HEIGHT } from 'src/app/models/types';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-product-card',
@@ -10,27 +11,42 @@ import { ROW_HEIGHT } from 'src/app/models/types';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() products?: Product[];
+  @Input() products!: Product[];
   @Input() showSlides = true;
   @Input() fullWidthMode = false;
   @Input() cols = 2;
-  rowHeight = ROW_HEIGHT[this.cols];
+  @Input() rowHeight = ROW_HEIGHT[this.cols];
 
   //Pass event to parent component
   @Output() addToCart = new EventEmitter<Product>();
   @Input() loading?: boolean;
   @Input() error?: boolean;
 
+  currentPage = 1;
+  itemsPerPage = 20;
+  @Input() totalProducts!: number; // This should ideally be calculated based on the products array
+
   constructor(
     private titleService: Title,
     private sharedService: SharedService
-  ) {    
+  ) {
   }
 
   ngOnInit(): void {
+    // this.totalProducts = this.products.length;
     this.titleService.setTitle(`Product Card - ${this.sharedService.appTitle}`);
   }
 
+  get paginatedProducts() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    return this.products.slice(startIndex, startIndex + this.itemsPerPage);
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.currentPage = event.pageIndex + 1;
+    this.itemsPerPage = event.pageSize;
+  }
+  
   trackByProductId(index: any, product: any) {
     return product.id;
   }

@@ -101,3 +101,17 @@ mat-spinner {
 .blog-1 {
   margin-left: 0.2rem;
 }
+
+/* Hide sidebar on small screens */
+@media (max-width: 768px) {
+  .sidenav {
+    display: none;
+  }
+}
+
+/* Show sidebar on large screens */
+@media (min-width: 769px) {
+  .sidenav {
+    display: block;
+  }
+}
