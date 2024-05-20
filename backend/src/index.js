@@ -54,7 +54,7 @@ app.use('/api/users', userRoute);
 app.use('/api/products', productRoute);
 app.use('/api/carts', cartRoute);
 app.use('/api/orders', orderRoute);
-app.use('/api/payment', paymentRoute);
+app.use('/api/checkout', paymentRoute);
 app.use('/api/config', mapRoute);
 
 // After all your API routes...

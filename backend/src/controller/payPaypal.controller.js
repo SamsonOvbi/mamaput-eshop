@@ -9,6 +9,10 @@ dotenv.config();
 
 const paypalContr = {};
 
+// app.get('/api/config/paypal', (req, res) => {
+//   res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
+// });
+
 paypalContr.checkout = asyncHandler(async (req, res) => {
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID || 'sb' });
 });

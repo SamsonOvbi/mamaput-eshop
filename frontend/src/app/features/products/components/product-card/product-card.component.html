@@ -6,7 +6,7 @@
   <mat-grid-list *ngIf="!error" gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
     <mat-grid-tile *ngFor="let product of paginatedProducts; trackBy: trackByProductId">
       <div class="w-full">
-        <mat-card class="shadow-lg p-2" [ngClass]="{'text-center': !fullWidthMode, }" *ngIf="product">
+        <mat-card class="shadow-lg p-1" [ngClass]="{'text-center': !fullWidthMode, }" *ngIf="product">
           <div [ngClass]="{'flex': fullWidthMode}">
             <a [routerLink]="'/product-details/' + product.slug">
               <img class="mb-1 mx-auto min-w-24"
@@ -14,7 +14,7 @@
                 [src]="product.image" />
             </a>
 
-            <mat-card-content class="w-full" [ngClass]="{'px-2 flex flex-col justify-between': fullWidthMode}">
+            <mat-card-content class="w-full" [ngClass]="{'px-1 flex flex-col justify-between': fullWidthMode}">
               <span class="font-bold text-xs uppercase mb-1">{{ product.category }}</span>
               <p class="truncate hover:whitespace-normal">{{ product.name }}</p>
               <p class="text-xs" *ngIf="fullWidthMode">{{ product.description }}</p>
@@ -24,7 +24,7 @@
                 <span class="text-red-400">{{ product.price | currency }}</span>
                 <button class="text-blue-700 hover:text-blue-900" (click)="onAddToCart(product)">
                   <mat-icon>add_shopping_cart</mat-icon> 
-                  <span class="text-sm" [ngClass]="{'mr-0': !fullWidthMode, 'mr-20': fullWidthMode}">ADD TO CART</span>
+                  <span class="text-sm" [ngClass]="{'mr-0': !fullWidthMode, 'mr-8': fullWidthMode}">ADD TO CART</span>
                 </button>
               </div>
             </mat-card-content>

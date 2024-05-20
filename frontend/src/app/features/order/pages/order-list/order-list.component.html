@@ -1,5 +1,5 @@
 <div *ngIf="loading; else result">
-  <mat-progress-bar ></mat-progress-bar>
+  <mat-progress-bar></mat-progress-bar>
   <div class="relative flex items-center mt-[40vh]">
     <mat-spinner diameter="50"></mat-spinner>
   </div>
@@ -79,7 +79,15 @@
               <span>${{ order.totalPrice }}</span>
             </div>
             <div *ngIf="!order.isPaid">
-              <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+              <div *ngIf="payMethod === 'stripe'">
+                <button (click)="initConfigStripe()" mat-raised-button color="primary" class="float-right">
+                  Proceed To Checkout
+                </button>
+              </div>
+              <div *ngIf="payMethod === 'paypal'">
+                <ngx-paypal [config]="payPalConfig"></ngx-paypal>    
+              </div>              
+              
             </div>
             <div *ngIf="order.isPaid && !order.isDelivered && currentUser && currentUser.isAdmin">
               <button (click)="deliverOrder()"

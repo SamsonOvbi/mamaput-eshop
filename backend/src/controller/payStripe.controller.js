@@ -46,7 +46,7 @@ stripeContr.checkout = async (req, res, next) => {
       line_items: purchasedItems.map((item) => ({
         price_data: {
           currency: 'usd',
-          product_data: { name: item.name, images: [item.product] },
+          product_data: { name: item.name, images: [item.product.image] },
           unit_amount: item.price * 100,
         },
         quantity: item.quantity,

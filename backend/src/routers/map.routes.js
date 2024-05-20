@@ -7,7 +7,6 @@ const mapContr = require('../controller/map.controller');
 const mapRoute = express.Router();
 
 mapRoute.get('/google', isAuth, mapContr.getGoogleApiKey);
-// mapRoute.get('/oSMap', isAuth, mapContr.getOSMapApiKey);
 
 mapRoute.get('/test', mapContr.test);
 
