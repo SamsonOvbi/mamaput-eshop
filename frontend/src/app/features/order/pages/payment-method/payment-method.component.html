@@ -1,0 +1,39 @@
+<mat-stepper selectedIndex="2" #stepper [orientation]="(stepperOrientation | async)!">
+  <mat-step label="Login" completed="true" editable="false"> </mat-step>
+  <mat-step label="Shipping Address" completed="true" editable="false"></mat-step>
+  <mat-step label="Payment Method" editable="false" completed="false">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" #ngForm="ngForm">
+          <h2>Payment Method</h2>
+          <mat-list>
+            <div>
+              <mat-radio-group formControlName="paymentMethod" aria-label="Select an option" class="radio-group"
+                [ngClass]="{
+                  invalid: ngForm.submitted && this.form.controls.paymentMethod.invalid
+                }">
+                <div class="flex flex-col ">
+                  <mat-radio-button class="radio-button" value="paypal">PayPal</mat-radio-button>
+                  <mat-radio-button class="radio-button" value="stripe">Stripe</mat-radio-button>
+                </div>
+
+                <mat-error *ngIf="ngForm.submitted && this.form.controls.paymentMethod.invalid">
+                  This field is required
+                </mat-error>
+              </mat-radio-group>
+            </div>
+            <mat-list-item>
+              <button type="button" (click)="back()" color="secondary" mat-button>
+                Back
+              </button>
+              &nbsp;
+              <button color="primary" mat-button>Next</button>
+            </mat-list-item>
+
+          </mat-list>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-step>
+  <mat-step label="Place Order" editable="false" completed="false"> </mat-step>
+</mat-stepper>

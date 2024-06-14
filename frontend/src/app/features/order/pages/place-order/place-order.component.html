@@ -1,0 +1,84 @@
+<!-- <mat-stepper selectedIndex="3" #stepper [ orientation]="(stepperOrientation | async)!" -->
+  <mat-stepper selectedIndex="3" #stepper [orientation]="(stepperOrientation | async )! ">
+    <mat-step label="Login" completed="true" editable="false"> </mat-step>
+    <mat-step label="Shipping Address" completed="true" editable="false"></mat-step>
+    <mat-step label="Payment Method" completed="true" editable=" false"></mat-step>
+    <mat-step label="Place Order" editable="false" completed="false">
+      <h1 class="text-xl font-bold">Place Order</h1>
+      <div class="flex flex-row flex-wrap gap-4 md:grid-cols-2">
+        <div class="w-full md:w-7/12">
+          <app-cart-table [cart]="cart" [displayedColumns]="displayedColumns"></app-cart-table>
+  
+          <div class="border-b border-dashed border-gray-50 "></div>
+          <mat-card class="p-4 shadow-md">
+            <h2 class="font-bold">Shipping Address</h2>
+            <mat-list>
+              <mat-list-item> 
+                {{ cart.shippingAddress.fullName }},
+                {{ cart.shippingAddress.address }},
+                {{ cart.shippingAddress.city }},
+                {{ cart.shippingAddress.country }},
+                {{ cart.shippingAddress.postalCode }} 
+              </mat-list-item>
+              <mat-list-item>
+                <button (click)="goShipping()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >EDIT</button>
+              </mat-list-item>
+            </mat-list>
+          </mat-card>
+  
+          <div class="border-b border-dashed border-gray-300"></div>
+          <mat-card class="p-4 shadow-md">
+            <h2 class="font-bold">Payment Method</h2>
+            <mat-list>
+              <mat-list-item>
+                {{ cart.paymentMethod }}
+              </mat-list-item>
+              <mat-list-item>
+                <button (click)="goPayment()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >EDIT</button>
+              </mat-list-item>
+            </mat-list>
+          </mat-card>
+        </div>
+  
+        <div class="w-full md:w-4/12">
+          <mat-card class="p-4 shadow-md">
+            <h2 class="font-bold">Order Summary</h2>
+            <mat-list>
+              <mat-list-item>
+                <div class="w-full flex flex-row">
+                  <div class="w-3/5">Items :</div>
+                  <div class="w-2/5">${{ cart.itemsPrice }}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="w-full flex flex-row">
+                  <div class="w-3/5">Shipping :</div>
+                  <div class="w-2/5">${{ cart.shippingPrice }}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="w-full flex flex-row">
+                  <div class="w-3/5">Tax :</div>
+                  <div class="w-1/5">${{ cart.taxPrice }}</div>
+                </div>
+              </mat-list-item>
+              <mat-list-item>
+                <div class="w-full flex flex-row">
+                  <div class="w-3/5">Total :</div>
+                  <div class="w-1/5">${{ cart.totalPrice }}</div>
+                </div>
+              </mat-list-item>
+            </mat-list>
+            <mat-card-actions>
+              <button [disabled]="loadingPlaceOrder" (click)="placeOrder()" class="w-full bg-blue-500 hover:bg-blue-700 text-white font- bold py-2 px-4 rounded" 
+                >
+                PLACE ORDER
+              </button>
+              <mat-spinner [diameter]="30" *ngIf="loadingPlaceOrder"></mat-spinner>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </mat-step>
+  </mat-stepper>
+  

@@ -1,0 +1,56 @@
+
+<!-- class="fixed top-16 left-0 right-0 z-50" -->
+<mat-nav-list class="fixed-navlist">
+  <span class="m-4 font-bold">Filter Options</span>
+  <a mat-list-item>
+    <div (click)="onCategoryUpdated('')">Reset Filters</div>
+  </a>
+  <a mat-list-item *ngFor="let category of categories; let idx = index">
+    <div (click)="onCategoryUpdated(category)">{{category}}</div>
+  </a>
+  <div class="flex items-center justify-between">
+    <div>
+      <span class="ml-4">Sort Items</span>
+    </div>
+  </div>
+  <div>
+    <button mat-button [matMenuTriggerFor]="sortMenu" aria-label="Open sort options menu">
+      <span>Sort from {{sort}}</span><mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #sortMenu="matMenu">
+      <a *ngFor="let item of sortFrom; let idx = index ">
+        <button mat-menu-item (click)="onSortUpdated(item)">{{item}}</button>
+      </a>
+    </mat-menu>
+  </div>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="ratingMenu">
+      <span>Rating from {{rating}}</span><mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-menu #ratingMenu="matMenu">
+      <a *ngFor="let rating of ratingFrom; let idx = index">
+        <button mat-menu-item (click)="onRatingUpdated(rating)">{{rating}}</button>
+      </a>
+    </mat-menu>
+  </div>
+
+  <div class="bg-blue-300 flex flex-col h-20 justify-center">
+    <a mat-list-item (click)="onPriceFilterUpdated(minValue, maxValue)">
+      <!-- <a mat-list-item [routerLink]="['/search']" [queryParams]="{ minValue: minValue, maxValue: maxValue }"> -->
+      <div class="py-1">
+        <label for="minValueRange">Min:</label>
+        <input id="minValueRange" type="range" [min]="0" [max]="maxValue" [step]="1" [(ngModel)]="minValue">
+      </div>
+      <div>
+        <label for="maxValueRange">Max:</label>
+        <input id="maxValueRange" type="range" [min]="minValue" [max]="2000" [step]="1" [(ngModel)]="maxValue">
+      </div>
+    </a>
+  </div>
+  <div class="ml-4">
+    <div>Min price: {{ minValue }}</div>
+    <div>Max price: {{ maxValue }}</div>
+  </div>
+
+</mat-nav-list>

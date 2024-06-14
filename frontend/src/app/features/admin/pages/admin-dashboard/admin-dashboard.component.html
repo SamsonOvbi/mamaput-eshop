@@ -1,0 +1,68 @@
+<div *ngIf="loading; else result">
+  <mat-progress-bar ></mat-progress-bar>
+  <div class="relative flex items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>
+<ng-template #result>
+  <ng-container *ngIf="!error">
+    <div class="flex flex-col md:flex-row md:justify-between ">
+      <div class="w-full md:w-1/5 mt-6">
+        <mat-nav-list>
+          <a mat-list-item class="selected bg-blue-500 text-white" routerLink="/admin/dashboard">Dashboard</a>
+          <a mat-list-item routerLink="/admin/orders">Orders</a>
+          <a mat-list-item routerLink="/admin/products">Products</a>
+          <a mat-list-item routerLink="/admin/users">Users</a>
+        </mat-nav-list>
+      </div>
+      <div class="w-full md:w-4/5 p-4 max-h-[80vh] overflow-auto">
+        <h2 class="text-2xl font-bold mb-4">Summary</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div class="col-span-1">
+            <mat-card class="shadow-md">
+              <mat-card-content>
+                <h1 class="text-2xl">{{ totalSales | currency }}</h1>
+                <p class="text-lg">Total Sales</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <a routerLink="/admin/orders" mat-button class="text-blue-500">View Sales</a>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <div class="col-span-1">
+            <mat-card class="shadow-md">
+              <mat-card-content>
+                <h1 class="text-2xl">{{ numOrders }}</h1>
+                <p class="text-lg">Num Orders</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <a routerLink="/admin/orders" mat-button class="text-blue-500">View Orders</a>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+          <div class="col-span-1">
+            <mat-card class="shadow-md">
+              <mat-card-content>
+                <h1 class="text-2xl">{{ numUsers }}</h1>
+                <p class="text-lg">Num Users</p>
+              </mat-card-content>
+              <mat-card-actions>
+                <a routerLink="/admin/users" mat-button class="text-blue-500">View Users</a>
+              </mat-card-actions>
+            </mat-card>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">Sales Chart</h2>
+        <div class="block">
+          <canvas baseChart [data]="barChartData" [options]="barChartOptions" [type]="barChartType">
+          </canvas>
+        </div>
+        <h2 class="text-2xl font-bold mb-4">Categories Chart</h2>
+        <div class="block">
+          <canvas baseChart [data]="pieChartData" [options]="pieChartOptions" [type]="pieChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>

@@ -1,0 +1,92 @@
+﻿<div *ngIf="loading; else result">
+  <mat-progress-bar ></mat-progress-bar>
+  <div class="relative flex items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <ng-container *ngIf="!error">
+    <mat-card class="w-full max-w-md mx-auto">
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-col ">
+          <div class="flex items-center space-x-4">
+            <img [src]="product.image" class="thumbnail w-16 h-16 object-cover rounded-full" />
+            <h2 class="text-lg font-bold">Update Product: {{ product._id }}</h2>
+          </div>
+
+          <mat-list class="w-full">
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full ">
+                <input matInput placeholder="Name" formControlName="name" required class="w-full " />
+                <mat-error> Please provide a name </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Slug" formControlName="slug" required class="w-full" />
+                <mat-error> Please provide a slug </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Price" formControlName="price" required class="w-full" />
+                <mat-error> Please provide a price </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item class="w-full min-h-36 ">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Image" formControlName="image" required />
+                <mat-error> Please provide an image </mat-error>
+              </mat-form-field>
+              <form action="/upload" method="post" enctype="multipart/form-data" >
+                <input #image name="image" id="image" type="file" (change)="uploadImage($event)" 
+                class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white p-2 rounded "/>
+                <div *ngIf="uploadLoading">
+                  <mat-progress-bar></mat-progress-bar>
+                  <mat-spinner></mat-spinner>
+                </div>
+              </form>
+            </mat-list-item>
+            
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Brand" formControlName="brand" required class="w-full" />
+                <mat-error> Please provide a brand </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Category" formControlName="category" required class="w-full" />
+                <mat-error> Please provide a category </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Count In Stock" formControlName="countInStock" required class="w-full" />
+                <mat-error> Please provide a countInStock </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+            <mat-list-item class="w-full min-h-16 ">
+              <mat-form-field class="w-full">
+                <input matInput placeholder="Description" formControlName="description" required class="w-full" />
+                <mat-error> Please provide a description </mat-error>
+              </mat-form-field>
+            </mat-list-item>
+
+            <mat-list-item class="flex justify-between items-center">
+              <button [disabled]="loading" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded mx-4">
+                Update
+              </button>
+              <mat-spinner [diameter]="30" *ngIf="loading"></mat-spinner>
+              <a mat-button routerLink="/admin/products"
+                class="bg-gray-500 hover:bg-gray-700 text-white p-4 pt-8 rounded"> Back </a>
+            </mat-list-item>
+          </mat-list>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</ng-template>

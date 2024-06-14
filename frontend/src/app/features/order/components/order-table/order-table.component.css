@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.name {
+  padding-left: 5px;
+}
+
+ngx-paypal {
+  width: 100%;
+}

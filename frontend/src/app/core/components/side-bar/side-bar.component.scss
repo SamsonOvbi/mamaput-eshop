@@ -1,0 +1,29 @@
+.sidenav {
+  padding: 1px;
+}
+
+.header {
+  padding: 10px;
+  display: flex;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+input[type="range"] {
+  width: 140px;
+}
+
+.fixed-navlist {
+  // position: fixed;
+  left: 0;
+  right: auto; /* Ensure the right edge is not auto-set */
+  width: 220px; /* Set the desired width */
+  top: 64px; /* Position it 64px from the top */
+  height: calc(90% - 64px); /* Adjust the height to fill the remaining space */
+  overflow-y: auto; /* Allow scrolling if the sidebar content is too long */
+  z-index: 50; /* Ensure it appears above other content */
+}

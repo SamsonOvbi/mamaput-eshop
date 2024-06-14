@@ -1,0 +1,14 @@
+<div *ngIf="loading; else result">
+  <mat-progress-bar ></mat-progress-bar>
+  <div class="relative flex items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result class="p-4 flex ">
+  <app-slider class="bg-blue-200" [products]="productsList"
+    [playInterval]="playInterval"></app-slider>
+
+  <app-product-box #productBox [productsList]="productsList" [showSlides]="showSlides"></app-product-box>
+
+</ng-template>
