@@ -3,8 +3,6 @@ import { CartListComponent } from './cart-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { CartService } from 'src/app/shared/services/cart.service';
-// import { AuthService } from 'src/app/core/helpers/auth.service';
 
 import { Cart } from 'src/app/features/cart/models/cart';
 import { User, UserInfo } from 'src/app/features/auth/models';
@@ -13,6 +11,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/features/auth/helpers/auth.service';
 import { Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
+import { CartService } from '../../services/cart.service';
 
 describe('CartListComponent', () => {
   let component: CartListComponent;

@@ -11,7 +11,7 @@ import { SharedService } from 'src/app/shared/services/shared.service';
 import { ROW_HEIGHT } from '../../../../models/types';
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 import { ProductService } from '../../services/product.service';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { Product } from '../../models/product';
 
 @Component({

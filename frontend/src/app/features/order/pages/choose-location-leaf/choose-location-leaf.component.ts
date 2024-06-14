@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 
 
 const config = {

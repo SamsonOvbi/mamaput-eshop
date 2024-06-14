@@ -2,10 +2,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Cart, Item, ShippingAddress } from './models/cart';
+import { Cart, Item, ShippingAddress } from '../models/cart';
 // import { User, UserInfo } from '../../models/user';
-import { Product } from '../../features/products/models/product';
-import { environment } from '../../../environments/environment';
+import { Product } from '../../products/models/product';
+import { environment } from '../../../../environments/environment';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 export const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100;

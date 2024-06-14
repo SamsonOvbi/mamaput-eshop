@@ -8,7 +8,7 @@ import { Product } from 'src/app/features/products/models/product';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 import { AuthService } from 'src/app/features/auth/helpers/auth.service';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 
 @Component({

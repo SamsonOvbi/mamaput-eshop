@@ -6,7 +6,7 @@ import { UserInfo } from 'src/app/features/auth/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from 'src/app/features/products/models/product';
 import { AuthService } from 'src/app/features/auth/helpers/auth.service';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { ProductService } from 'src/app/features/products/services/product.service';
 import { SeoService } from 'src/app/shared/services/seo.service';
 import { SharedService } from 'src/app/shared/services/shared.service';

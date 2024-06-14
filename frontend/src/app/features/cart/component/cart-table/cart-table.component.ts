@@ -6,7 +6,7 @@ import { Cart, Item } from '../../models/cart';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
 import { ConfirmDialogComponent } from 'src/app/shared/dialogs/confirm-dialog/confirm-dialog.component';
-import { CartService } from '../../cart.service';
+import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 
 

@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { UserInfo } from 'src/app/features/auth/models';
 import { Order } from 'src/app/features/order/models/order';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { OrderService } from '../../order.service';
 import { AuthService } from 'src/app/features/auth/helpers/auth.service';
 

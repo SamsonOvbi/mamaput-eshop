@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/features/products/services/product.servi
 import { SharedService } from 'src/app/shared/services/shared.service';
 import { ForgotPasswordComponent } from 'src/app/features/auth/dialogs/forgot-password/forgot-password.component';
 import { AuthService } from 'src/app/features/auth/helpers/auth.service';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { Subscription } from 'rxjs';
 
 @Component({

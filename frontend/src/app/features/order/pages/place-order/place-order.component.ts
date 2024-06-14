@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Cart, Item, ShippingAddress } from 'src/app/features/cart/models/cart';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 import { OrderService } from '../../order.service';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Title } from '@angular/platform-browser';
 import { SharedService } from 'src/app/shared/services/shared.service';
-import { CartService } from 'src/app/features/cart/cart.service';
+import { CartService } from 'src/app/features/cart/services/cart.service';
 
 @Component({
   selector: 'app-payment-method',
