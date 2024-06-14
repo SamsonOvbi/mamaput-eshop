@@ -1,0 +1,14 @@
+﻿<div *ngIf="loading; else result">
+  <mat-progress-bar ></mat-progress-bar>
+  <div class="relative flex items-center mt-[40vh]">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #result>
+  <div *ngIf="!error">
+    <div class="flex justify-center"> {{ productsSearch.length }} Result(s) </div>
+    <div class="divider"></div>
+    <app-product-box #productBox [category]="category" [productsSearch]="productsSearch" [showSlides]="showSlides"> </app-product-box>
+  </div>
+</ng-template>

@@ -42,7 +42,6 @@ export class PlaceOrderComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private sharedService: SharedService,
     private router: Router,
-
     private messageDialogService: MessageDialogService,
     cartService: CartService,
     orderService: OrderService,

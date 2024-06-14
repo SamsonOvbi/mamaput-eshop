@@ -1,10 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+<<<<<<< HEAD
+=======
+import { CartService } from 'src/app/shared/services/cart.service';
+>>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
+<<<<<<< HEAD
 import { CartService } from 'src/app/features/cart/cart.service';
+=======
+>>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
 
 const config = {
   latitude: 5.537216, longitude: 2.3488896  // Default coordinates
@@ -128,9 +135,15 @@ export class ChooseLocationLeafComponent implements OnInit, OnDestroy, AfterView
       } else {
         throw new Error('Map container not found.');
       }
+<<<<<<< HEAD
     } catch (err: any) {
       console.error(err);
       this.messageDialogService.openMessageDlg({message: err.message, type: 'error'});
+=======
+    } catch (error: any) {
+      console.error(error);
+      this.messageDialogService.openMessageDlg({message: error.message, type: 'error'});
+>>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
     }
   }
 

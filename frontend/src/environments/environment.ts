@@ -4,8 +4,13 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
   apiUrl: 'http://localhost:3004',
   baseUrl: 'http://localhost:4204',
+=======
+  // apiUrl: 'http://localhost:5000',
+  apiUrl: 'http://localhost:3000',
+>>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
 };
 
 /*

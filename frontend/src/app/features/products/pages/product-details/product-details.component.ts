@@ -56,7 +56,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private router: Router,
     private cartService: CartService,
-
   ) {
     this.form = this.formBuilder.group({
       comment: ['', Validators.required],

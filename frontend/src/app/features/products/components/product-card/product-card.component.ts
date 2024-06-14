@@ -46,7 +46,6 @@ export class ProductCardComponent implements OnInit {
     this.currentPage = event.pageIndex + 1;
     this.itemsPerPage = event.pageSize;
   }
-
   trackByProductId(index: any, product: any) {
     return product.id;
   }

@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+<<<<<<< HEAD
 import { Order } from 'src/app/features/order/models/order';
+=======
+import { Order } from 'src/app/models/order';
+>>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
 import { SharedService } from 'src/app/shared/services/shared.service';
 
 @Component({
