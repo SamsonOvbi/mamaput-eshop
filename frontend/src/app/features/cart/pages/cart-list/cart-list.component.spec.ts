@@ -2,25 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CartListComponent } from './cart-list.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BehaviorSubject, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { CartService } from 'src/app/shared/services/cart.service';
-<<<<<<< HEAD
-import { AuthService } from 'src/app/core/helpers/auth.service';
-=======
-import { AuthService } from 'src/app/shared/services/auth.service';
->>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
-import { Title } from '@angular/platform-browser';
-import { SharedService } from 'src/app/shared/services/shared.service';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-<<<<<<< HEAD
+// import { AuthService } from 'src/app/core/helpers/auth.service';
+
 import { Cart } from 'src/app/features/cart/models/cart';
 import { User, UserInfo } from 'src/app/features/auth/models';
-=======
-import { Cart } from 'src/app/models/cart';
-import { User, UserInfo } from 'src/app/models';
->>>>>>> beb68af6c6759bf3a39e5a04d7f8887f9b5c9cb7
 import { MessageDialogService } from 'src/app/shared/dialogs/message-dialog/message-dialog.service';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/features/auth/helpers/auth.service';
+import { Title } from '@angular/platform-browser';
+import { SharedService } from 'src/app/shared/services/shared.service';
 
 describe('CartListComponent', () => {
   let component: CartListComponent;

@@ -7,7 +7,7 @@ import { Cart, Item, ShippingAddress } from '../../models/cart';
 import { Product } from '../../models/product';
 import { environment } from '../../../environments/environment';
 import { LocalStorageService } from './local-storage.service';
-import { AuthService } from './auth.service';
+import { AuthService } from 'src/app/features/auth/helpers/auth.service';
 
 export const round2 = (num: number) => Math.round(num * 100 + Number.EPSILON) / 100;
 
@@ -33,7 +33,7 @@ export class CartService {
   constructor(
     private http: HttpClient,
     private locStorageService: LocalStorageService,
-    private authService: AuthService,
+    // private authService: AuthService,
   ) {
     this.currentCartSubject = new BehaviorSubject<Cart>(
       locStorageService.getItem('currentCart') || defaultCart
