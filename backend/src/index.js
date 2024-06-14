@@ -63,13 +63,13 @@ app.get('*', (req, res) => {
 startKeepAliveCron();
 app.use(rateLimiter);
 
+const port = process.env.PORT;
+app.listen(port, () => {
+  console.log(`server started on port http://localhost:${port}`);
+});
+
 app.use((err, req, res, next) => {
   console.log({ message: err.message })
   res.status(500).send({ message: err.message });
   next(); 
-});
-
-const port = process.env.PORT;
-app.listen(port, () => {
-  console.log(`server started on port http://localhost:${port}`);
 });
