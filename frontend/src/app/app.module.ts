@@ -13,7 +13,7 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
 import { NgxPayPalModule } from 'ngx-paypal';
 import { SwiperModule } from 'swiper/angular';
 
-// Routing & Core Modules
+// Routing & Core Modules 
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 

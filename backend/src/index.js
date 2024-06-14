@@ -56,12 +56,9 @@ app.use(express.static(path.join(__dirname, './public')));
 // Serve static files from the frontend directory
 app.use(express.static(path.join(__dirname, '../../frontend/dist/frontend')));
 // Catch-all handler for all other routes
-const indexHtml = path.join(__dirname, '../../frontend/dist/frontend/index.html');
-if(indexHtml){
-  app.get('*', (req, res) => {
-    res.sendFile(indexHtml);
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../frontend/dist/frontend/index.html'));
+});
 
 startKeepAliveCron();
 app.use(rateLimiter);
