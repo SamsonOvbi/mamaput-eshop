@@ -34,11 +34,9 @@
     </mat-menu>
   </div>
 
-  <button mat-button (click)="onPriceFilterUpdated(minValue, maxValue)">
-    Test Price Filter
-  </button>
-  <div class="bg-blue-300 flex flex-col h-20 justify-center">    
-    <button mat-button (click)="onPriceFilterUpdated(minValue, maxValue)">
+  <div class="bg-blue-300 flex flex-col h-20 justify-center">
+    <button mat-button (click)="onPriceFilterUpdated(minValue, maxValue)"> Apply Price Filter </button>
+    <a class="ml-2">
       <div class="py-1">
         <label for="minValueRange">Min:</label>
         <input id="minValueRange" type="range" [min]="0" [max]="maxValue" [step]="1" [(ngModel)]="minValue">
@@ -47,7 +45,7 @@
         <label for="maxValueRange">Max:</label>
         <input id="maxValueRange" type="range" [min]="minValue" [max]="2000" [step]="1" [(ngModel)]="maxValue">
       </div>
-    </button>
+    </a>
   </div>
   <div class="ml-4">
     <div>Min price: {{ minValue }}</div>
