@@ -94,13 +94,12 @@ export class SideBarComponent implements OnInit, OnDestroy {
 
     this.router.navigate(['/search'], queryParams).then(success => {
       if (success) {
-        console.log('Navigation successful');
-      } else {
-        console.log('Navigation failed');
-      }
+        return console.log('Navigation successful');
+      } 
+      console.log('Navigation failed');
     }).catch(err => {
       console.error('Navigation error:', err);
-    }); 
+    });
   }
 
   ngOnDestroy(): void {

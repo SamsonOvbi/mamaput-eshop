@@ -1,4 +1,3 @@
-
 <!-- class="fixed top-16 left-0 right-0 z-50" -->
 <mat-nav-list class="fixed-navlist">
   <span class="m-4 font-bold">Filter Options</span>
@@ -35,9 +34,11 @@
     </mat-menu>
   </div>
 
-  <div class="bg-blue-300 flex flex-col h-20 justify-center">
-    <a mat-button (click)="onPriceFilterUpdated(minValue, maxValue)">
-      <!-- <a mat-list-item [routerLink]="['/search']" [queryParams]="{ minValue: minValue, maxValue: maxValue }"> -->
+  <button mat-button (click)="onPriceFilterUpdated(minValue, maxValue)">
+    Test Price Filter
+  </button>
+  <div class="bg-blue-300 flex flex-col h-20 justify-center">    
+    <button mat-button (click)="onPriceFilterUpdated(minValue, maxValue)">
       <div class="py-1">
         <label for="minValueRange">Min:</label>
         <input id="minValueRange" type="range" [min]="0" [max]="maxValue" [step]="1" [(ngModel)]="minValue">
@@ -46,7 +47,7 @@
         <label for="maxValueRange">Max:</label>
         <input id="maxValueRange" type="range" [min]="minValue" [max]="2000" [step]="1" [(ngModel)]="maxValue">
       </div>
-    </a>
+    </button>
   </div>
   <div class="ml-4">
     <div>Min price: {{ minValue }}</div>
