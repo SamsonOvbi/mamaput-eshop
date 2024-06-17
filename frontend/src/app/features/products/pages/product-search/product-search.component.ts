@@ -62,7 +62,7 @@ export class ProductSearchComponent implements OnInit, OnDestroy {
       // this.query = p.query || ''; // Retrieve the query parameter
       this.description = p.query || '';
       this.sort = p.sort || '';
-      this.rating = p.rating || 0;
+      this.rating = p.rating || 0; 
       this.minValue = p.minValue || 0;
       this.maxValue = p.maxValue || 0;
       search = p.category || p.name || p.description || p.sort || p.rating || this.minValue || this.maxValue;
