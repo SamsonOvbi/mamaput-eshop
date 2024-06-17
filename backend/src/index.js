@@ -34,13 +34,7 @@ const allowedOrigins = [
   'https://mamaput-eshop-1.onrender.com', projectUri,
 ];
 app.use(
-  cors({
-    credentials: true,
-    origin: [
-      'http://localhost:4204', 'http://localhost:4205', 'http://localhost:4207',
-      'https://mamaput-eshop-1.onrender.com',
-    ],
-  })
+  cors({ credentials: true, origin: allowedOrigins, })
 );
 
 connectDB();

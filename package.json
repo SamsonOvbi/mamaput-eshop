@@ -2,10 +2,9 @@
   "name": "mamaput-eshop",
   "version": "0.0.0",
   "engines": {
-    "node": "<=18 <21"
+    "node": ">=18 "
   },
   "scripts": {
-    "ng": "ng",
     "start": "cd backend/build && node index.js",
     "prebuild": "cd backend && yarn run build",
     "postbuild": "cd frontend && yarn run build",
@@ -13,6 +12,5 @@
   },
   "private": true,
   "dependencies": {},
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }

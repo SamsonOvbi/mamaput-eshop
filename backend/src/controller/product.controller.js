@@ -15,7 +15,7 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
   // const sort = req.query.sort === 'desc' ? -1 : 1;
   const sort = (req.query.sort || '');
   const min = req.query.minValue && Number(req.query.minValue) !== 0 ? Number(req.query.minValue) : 1;
-  const max = req.query.maxValue && Number(req.query.maxValue) !== 0 ? Number(req.query.maxValue) : 1900;
+  const max = req.query.maxValue && Number(req.query.maxValue) !== 0 ? Number(req.query.maxValue) : 2100;
   const rating = req.query.rating && Number(req.query.rating) !== 0 ? Number(req.query.rating) : 0;
 
   const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
@@ -38,7 +38,6 @@ productContr.getAllProducts = asyncHandler(async (req, res) => {
     .sort(sortOrder)
   return res.status(200).send(products);
 });
-
 
 productContr.getPagedProducts = asyncHandler(async (req, res) => {
   const pageSize = Number(req.query.pageSize) || 5;
