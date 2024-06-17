@@ -84,8 +84,8 @@ export class SideBarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/search'], queryParams);
   }
 
-  onPriceFilterUpdated(minValue: any, maxValue: any): void {
-    this.minValue = minValue; this.maxValue = maxValue;
+  onPriceFilterUpdated(minVal: number, maxVal: number): void {
+    this.minValue = minVal; this.maxValue = maxVal;
     const queryParams: NavigationExtras = {
       queryParams: { minValue: this.minValue, maxValue: this.maxValue },
       queryParamsHandling: 'merge', // Merge the new query parameters with the existing ones

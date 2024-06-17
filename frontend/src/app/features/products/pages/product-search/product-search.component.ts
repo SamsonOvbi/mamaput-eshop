@@ -79,7 +79,7 @@ export class ProductSearchComponent implements OnInit, OnDestroy {
     this.showCategory = this.category;
     const productFilter: ProductFilter = {
       pageSize: '20', pageNumber: 1, category: this.category || '',
-      name: this.name, description: this.name, sort: this.sort, rating: this.rating,
+      name: this.name, description: this.description, sort: this.sort, rating: this.rating,
       minValue: this.minValue, maxValue: this.maxValue,
     }
 
