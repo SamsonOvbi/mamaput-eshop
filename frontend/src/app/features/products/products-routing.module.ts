@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductSearchComponent } from './pages/product-search/search.component';
+import { ProductSearchComponent } from './pages/product-search/product-search.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 
